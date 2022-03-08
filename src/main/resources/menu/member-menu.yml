@@ -1,0 +1,57 @@
+menu:
+
+  title: "&6Member Settings"
+  size: 54
+
+  fill: true
+
+  items:
+
+    member:
+      material: "HEAD: %player%"
+      name: "&6Member"
+      lore:
+        - ""
+        - " &8▪ &7Generator Break Permission&8: &e%generator_break_permission%"
+        - " &8▪ &7Open Settings Permission&8: &e%generator_open_permission%"
+        - " &8▪ &7Change Settings Permission&8: &e%generator_change_permission%"
+        - ""
+
+    breakGeneratorPerm:
+      material: "DIAMOND_PICKAXE"
+      name: "&6Break Perm"
+      lore:
+        - ""
+        - " &8▪ &7Status&8: &e%generator_break_permission%"
+        - ""
+        - " &7&l→ &eClick for enabler!"
+        - ""
+
+    openSettingsPerm:
+      material: "SIGN"
+      name: "&6Open Settings Perm"
+      lore:
+        - ""
+        - " &8▪ &7Status&8: &e%generator_open_permission%"
+        - ""
+        - " &7&l→ &eClick for enabler!"
+        - ""
+
+    changeSettingsPerm:
+      material: "ANVIL"
+      name: "&6Change Settings Perm"
+      lore:
+        - ""
+        - " &8▪ &7Status&8: &e%generator_change_permission%"
+        - ""
+        - " &7&l→ &eClick for enabler!"
+        - ""
+
+    close:
+      material: "ARROW"
+      name: "&6Back"
+      lore:
+        - ""
+        - " &8&l→ &eBack to previous"
+        - ""
+

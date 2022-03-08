@@ -1,0 +1,11 @@
+name: EliteGenerator
+version: '1.0.1'
+main: me.kafein.elitegenerator.EliteGenerator
+api-version: 1.13
+authors: [ Kafein ]
+description: Elite Generator Plugin.
+depend: [HolographicDisplays, Vault]
+softdepend: [ASkyBlock, BentoBox, SuperiorSkyblock2, IridiumSkyblock, FabledSkyBlock]
+commands:
+  elitegenerator:
+    aliases: [generator]

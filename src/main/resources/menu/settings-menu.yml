@@ -1,0 +1,88 @@
+menu:
+
+  title: "&6&lEG &7➜ &eSettings"
+  size: 45
+
+  fill: true
+
+  items:
+
+    members:
+      slot: 13
+      material: "HEAD: %player%"
+      name: "&6Members"
+      lore:
+        - ""
+        - " &8▪ &7Member Amount&8: &e%generator_member_amount%"
+        - ""
+        - " &8&l→ &eClick for member settings!"
+        - ""
+
+    autoBreak:
+      slot: 29
+      material: "DIAMOND_PICKAXE"
+      name: "&6Auto Break"
+      lore:
+        - ""
+        - " &8▪ &7Buyed&8: &e%generator_auto_break_buyed%"
+        - " &8▪ &7Enabled&8: &e%generator_auto_break_enabled%"
+        - ""
+        - " &8&l→ &eClick for enabler!"
+        - ""
+
+    autoPickup:
+      slot: 30
+      material: "HOPPER"
+      name: "&6Auto Pickup"
+      lore:
+        - ""
+        - " &8▪ &7Buyed&8: &e%generator_auto_pickup_buyed%"
+        - " &8▪ &7Enabled&8: &e%generator_auto_pickup_enabled%"
+        - ""
+        - " &8&l→ &eClick for enabler!"
+        - ""
+
+    autoSmelt:
+      slot: 31
+      material: "FURNACE"
+      name: "&6Auto Smelt"
+      lore:
+        - ""
+        - " &8▪ &7Buyed&8: &e%generator_auto_smelt_buyed%"
+        - " &8▪ &7Enabled&8: &e%generator_auto_smelt_enabled%"
+        - ""
+        - " &8&l→ &eClick for enabler!"
+        - ""
+
+    autoChest:
+      slot: 32
+      material: "CHEST"
+      name: "&6Auto Chest"
+      lore:
+        - ""
+        - " &8▪ &7Buyed&8: &e%generator_auto_chest_buyed%"
+        - " &8▪ &7Enabled&8: &e%generator_auto_chest_enabled%"
+        - ""
+        - " &8&l→ &eClick for enabler!"
+        - ""
+
+    delete:
+      slot: 33
+      material: "BARRIER"
+      name: "&6Delete Generator"
+      lore:
+        - ""
+        - "&7&o(if you delete the generator,"
+        - " &7&oyou will be given the generator item.)"
+        - ""
+        - " &8&l→ &eClick for delete generator!"
+        - ""
+
+    close:
+      slot: 36
+      material: "ARROW"
+      name: "&6Back"
+      lore:
+        - ""
+        - " &8&l→ &eBack to previous"
+        - ""

@@ -1,0 +1,38 @@
+menu:
+
+  title: "&6Members Menu"
+  size: 54
+
+  items:
+
+    member:
+      material: "HEAD: %player%"
+      name: "&6%player%"
+      lore:
+        - ""
+        - " &7&l→ &eClick for member's settings!"
+        - ""
+
+    nextPage:
+      material: "ARROW"
+      name: "&6Next Page"
+      lore:
+        - ""
+        - " &7&l→ &eClick for next page!"
+        - ""
+
+    previousPage:
+      material: "ARROW"
+      name: "&6Previous Page"
+      lore:
+        - ""
+        - " &7&l→ &eClick for previous page!"
+        - ""
+
+    close:
+      material: "BARRIER"
+      name: "&6Back"
+      lore:
+        - ""
+        - " &8&l→ &eBack to previous"
+        - ""

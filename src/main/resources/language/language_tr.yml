@@ -1,0 +1,45 @@
+language:
+
+  prefix: "&6EliteGenerator &7➜"
+
+  noPerm: "%prefix% &eYetersiz Yetki!"
+
+  reload: "%prefix% &aEklenti Yenilendi!"
+
+  help:
+    - ""
+    - " &6Jeneratör Komutları&8;"
+    - ""
+    - " &e/generator reload"
+    - " &8▪ &7Eklenti yenileme komutu."
+    - ""
+    - " &e/generator give <target>"
+    - " &8▪ &7Hedefe jeneratör verir."
+    - ""
+
+  targetIsNotOnline: "%prefix% &e%player% &7aktif değil."
+
+  generator:
+
+    generatorItemGivenToTarget: "%prefix% &eOyuncuya jeneratör eşyası verildi."
+    givenGeneratorItem: "%prefix% &eSana bir jeneratör eşyası verildi."
+
+    generatorPlaced: "%prefix% &eJeneratör yere koyuldu."
+    generatorDeleted: "%prefix% &eJeneratör silindi ve sana eşyası verildi."
+
+    generatorIslandLimit: "%prefix% &7Adana koyabileceğin maksimum jeneratör sayısı &e%max_generator_amount% &7kadardır."
+    thisWorldIsNotIslandWorld: "%prefix% &eJeneratörü sadece adana koyabilirsin."
+    thisIslandIsNotYour: "%prefix% &eBunun için ada sahibi olmalısın."
+
+    generatorIsNotUpgraded: "%prefix% &7Jeneratör yeterlilikler sağlanmadığı için yükseltilemedi."
+
+    upgrade:
+
+      generatorLevelUpgrade: "%prefix% &7Jeneratör &e%level% &7seviyesine yükseltildi."
+      generatorBoostUpgrade: "%prefix% &7Jeneratör &e%level% &7seviyesinde &a%duration% &7kadar boostlandı."
+
+      generatorAutoBreakUpgrade: "%prefix% &eJeneratör'ün otomatik kırması satın alındı."
+      generatorAutoPickupUpgrade: "%prefix% &eJeneratör'ün otomatik toplaması satın alındı."
+      generatorAutoSmeltUpgrade: "%prefix% &eJeneratör'ün otomatik ısıtması satın alındı."
+      generatorAutoChestUpgrade: "%prefix% &eJeneratör'ün otomatik sandığa aktarması satın alındı."
+

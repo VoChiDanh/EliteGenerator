@@ -1,0 +1,44 @@
+language:
+
+  prefix: "&6EliteGenerator &7➜"
+
+  noPerm: "%prefix% &eYou don't have permission to do that!"
+
+  reload: "%prefix% &aPlugin Reloaded."
+
+  help:
+    - ""
+    - " &6Generator Commands&8;"
+    - ""
+    - " &e/generator reload"
+    - " &8▪ &7Reload command."
+    - ""
+    - " &e/generator give <target>"
+    - " &8▪ &7Generator give to target."
+    - ""
+
+  targetIsNotOnline: "%prefix% &e%player% &7is not online."
+
+  generator:
+
+    generatorItemGivenToTarget: "%prefix% &eThe player was given the generator item."
+    givenGeneratorItem: "%prefix% &eYou have been given a generator item."
+
+    generatorPlaced: "%prefix% &eGenerator placed."
+    generatorDeleted: "%prefix% &eGenerator deleted and generator item given to your."
+
+    generatorIslandLimit: "%prefix% &7Island generator limit is &e%max_generator_amount%&7."
+    thisWorldIsNotIslandWorld: "%prefix% &eYou can just put the generator on your island."
+    thisIslandIsNotYour: "%prefix% &eYou must be an island owner for this."
+
+    generatorIsNotUpgraded: "%prefix% &7Generator could not upgrade because generator requirements could not be met."
+
+    upgrade:
+
+      generatorLevelUpgrade: "%prefix% &7The generator has been increased to &e%level%&7."
+      generatorBoostUpgrade: "%prefix% &7Generator boosted at &e%level% &7up to &a%duration%&7."
+
+      generatorAutoBreakUpgrade: "%prefix% &eAutoBreak of the generator has been purchased."
+      generatorAutoPickupUpgrade: "%prefix% &eAutoPickup of the generator has been purchased."
+      generatorAutoSmeltUpgrade: "%prefix% &eAutoSmelt of the generator has been purchased."
+      generatorAutoChestUpgrade: "%prefix% &eAutoChest of the generator has been purchased."

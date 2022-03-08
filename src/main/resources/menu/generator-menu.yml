@@ -1,0 +1,46 @@
+menu:
+
+  title: "&6&lElite Generator"
+  size: 27
+
+  fill: true
+
+  items:
+
+    generator-info:
+      slot: 11
+      material: "BOOK"
+      glow: false
+      name: "&6Generator Info"
+      lore:
+        - ""
+        - " &8▪ &e%generator_name% "
+        - ""
+        - " &8▪ &7Level&8: &e%generator_level% "
+        - " &8▪ &7Boost&8: &e%generator_boost_level%(%generator_boost_time%)"
+        - " "
+        - " &7Upgrades&8: "
+        - " &8▪ &7AutoBreak&8: &e%generator_auto_break_buyed%(%generator_auto_break_enabled%) "
+        - " &8▪ &7AutoPickup&8: &e%generator_auto_pickup_buyed%(%generator_auto_pickup_enabled%) "
+        - " &8▪ &7AutoSmelt&8: &e%generator_auto_smelt_buyed%(%generator_auto_smelt_enabled%) "
+        - " &8▪ &7AutoChest&8: &e%generator_auto_chest_buyed%(%generator_auto_chest_enabled%) "
+        - ""
+
+    upgrade:
+      slot: 13
+      material: "NETHER_STAR"
+      name: "&6Generator Upgrade"
+      lore:
+        - ""
+        - " &7&l→ &eClick for Upgrade Menu"
+        - ""
+
+    settings:
+      slot: 15
+      material: "ANVIL"
+      glow: false
+      name: "&6Generator Settings"
+      lore:
+        - ""
+        - " &7&l→ &eClick for Settings Menu"
+        - ""

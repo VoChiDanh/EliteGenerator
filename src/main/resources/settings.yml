@@ -1,0 +1,183 @@
+settings:
+
+  #selected language
+  language: "en"
+
+  generator:
+
+    #default: 3
+    generator-island-limit: 3
+
+    generator-first-material: "REDSTONE_ORE"
+
+    generator-item:
+      material: "REDSTONE"
+      name: "&6Generator Item"
+      lore:
+        - ""
+        - " &8▪ &7Level&8: &e%level%"
+        - ""
+        - " &6Upgrades&8:"
+        - " &8▪ &7autoBreak&8: &e%autoBreak%"
+        - " &8▪ &7autoPickup&8: &e%autoPickup%"
+        - " &8▪ &7autoChest&8: &e%autoChest%"
+        - " &8▪ &7autoSmelt&8: &e%autoSmelt%"
+      enchant:
+        - "DURABILITY: 5"
+
+    autoChestTimeLeftMessage: "&eTime left &6(%time%s) &7for any chest"
+
+    hologram:
+
+      classic-hologram-height: 2.8
+
+      classic-hologram:
+        - ""
+        - "&6%generator_name%"
+        - ""
+        - "&eLevel&8: &7%generator_level%"
+        - ""
+        - "&8(&7Shift + right click = menu&8)"
+
+      boosted-hologram-height: 3.6
+
+      boosted-hologram:
+        - ""
+        - "&6%generator_name%"
+        - ""
+        - "&eLevel&8: &7%generator_level%"
+        - ""
+        - "&eBoost&8: &7%generator_boost_time%"
+        - "&eBoost Level&8: &7%generator_boost_level%"
+        - ""
+        - "&8(&7Shift + right click = menu&8)"
+
+    upgrade:
+
+      level-upgrade:
+        1:
+          material:
+            - "COBBLESTONE: 70.0"
+            - "STONE: 15.0"
+            - "COAL_ORE: 5.0"
+            - "REDSTONE_ORE: 3.0"
+            - "IRON_ORE: 2.0"
+        2:
+          requirement:
+            - "money: 10000"
+            - "exp: 100"
+            - "is_level: 750"
+            - "upgrade: auto_pickup"
+          material:
+            - "COBBLESTONE: 50.0"
+            - "STONE: 25.0"
+            - "COAL_ORE: 10.0"
+            - "REDSTONE_ORE: 8.0"
+            - "IRON_ORE: 5.0"
+            - "GOLD_ORE: 2.0"
+        3:
+          requirement:
+            - "money: 25000"
+            - "exp: 300"
+            - "is_level: 1250"
+            - "upgrade: auto_smelt"
+          material:
+            - "COBBLESTONE: 30.0"
+            - "STONE: 15.0"
+            - "COAL_ORE: 20.0"
+            - "REDSTONE_ORE: 15.0"
+            - "IRON_ORE: 10.0"
+            - "GOLD_ORE: 8.0"
+            - "DIAMOND_ORE: 2.0"
+        4:
+          requirement:
+            - "money: 50000"
+            - "exp: 500"
+            - "is_level: 2500"
+            - "upgrade: auto_chest"
+          material:
+            - "COBBLESTONE: 10.0"
+            - "STONE: 5.0"
+            - "COAL_ORE: 15.0"
+            - "REDSTONE_ORE: 25.0"
+            - "IRON_ORE: 20.0"
+            - "GOLD_ORE: 15.0"
+            - "DIAMOND_ORE: 8.0"
+            - "EMERALD_ORE: 2.0"
+        5:
+          requirement:
+            - "money: 100000"
+            - "exp: 1000"
+            - "is_level: 5000"
+            - "upgrade: auto_break"
+          material:
+            - "STONE: 5.0"
+            - "COAL_ORE: 10.0"
+            - "REDSTONE_ORE: 15.0"
+            - "IRON_ORE: 20.0"
+            - "GOLD_ORE: 25.0"
+            - "DIAMOND_ORE: 15.0"
+            - "EMERALD_ORE: 10.0"
+
+      boost-upgrade:
+        1:
+          duration: 3600
+          requirement:
+            - "money: 50000"
+            - "exp: 500"
+          material:
+            - "COBBLESTONE: 10.0"
+            - "STONE: 5.0"
+            - "COAL_ORE: 15.0"
+            - "REDSTONE_ORE: 25.0"
+            - "IRON_ORE: 20.0"
+            - "GOLD_ORE: 15.0"
+            - "DIAMOND_ORE: 8.0"
+            - "EMERALD_ORE: 2.0"
+        2:
+          duration: 3600
+          requirement:
+            - "level: 2"
+            - "money: 75000"
+            - "exp: 750"
+            - "is_level: 2500"
+          material:
+            - "COAL_ORE: 20.0"
+            - "REDSTONE_ORE: 20.0"
+            - "IRON_ORE: 25.0"
+            - "GOLD_ORE: 20.0"
+            - "DIAMOND_ORE: 10.0"
+            - "EMERALD_ORE: 5.0"
+        3:
+          duration: 3600
+          requirement:
+            - "level: 3"
+            - "money: 100000"
+            - "exp: 1000"
+            - "is_level: 5000"
+          material:
+            - "COAL_ORE: 10.0"
+            - "REDSTONE_ORE: 15.0"
+            - "IRON_ORE: 25.0"
+            - "GOLD_ORE: 25.0"
+            - "DIAMOND_ORE: 15.0"
+            - "EMERALD_ORE: 10.0"
+      autopickup:
+        requirement:
+          - "money: 10000"
+      autosmelt:
+        requirement:
+          - "level: 2"
+          - "money: 15000"
+      autochest:
+        requirement:
+          - "level: 3"
+          - "money: 25000"
+      autobreak:
+        requirement:
+          - "level: 4"
+          - "money: 50000"
+
+  smeltItems:
+    IRON_ORE: "IRON_INGOT"
+    GOLD_ORE: "GOLD_INGOT"

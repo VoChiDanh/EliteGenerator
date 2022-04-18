@@ -25,4 +25,8 @@ public class StorageManager {
 
     }
 
+    public void setStorage(Storage storage) {
+        this.storage = storage;
+    }
+
 }

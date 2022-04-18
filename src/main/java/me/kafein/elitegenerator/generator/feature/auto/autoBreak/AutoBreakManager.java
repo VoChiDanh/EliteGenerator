@@ -10,6 +10,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -48,20 +49,21 @@ public class AutoBreakManager {
 
             final Block block = generator.getGeneratorLocation().getBlock();
 
-            if (block.isEmpty()) return;
+            if (block.isEmpty()) continue;
 
-            Bukkit.getScheduler().runTask(plugin, () -> block.breakNaturally());
+            Bukkit.getScheduler().runTask(plugin, () -> {
+                block.breakNaturally();
+                final GeneratorBreakEvent generatorBreakEvent = new GeneratorBreakEvent(null
+                        , generator
+                        , block
+                        , true
+                        , generator.isAutoPickupEnabled()
+                        , generator.isAutoSmeltEnabled()
+                        , generator.isAutoChestEnabled()
+                        , false);
 
-            final GeneratorBreakEvent generatorBreakEvent = new GeneratorBreakEvent(null
-                    , generator
-                    , block
-                    , true
-                    , generator.isAutoPickupEnabled()
-                    , generator.isAutoSmeltEnabled()
-                    , generator.isAutoChestEnabled()
-                    , false);
-
-            pluginManager.callEvent(generatorBreakEvent);
+                pluginManager.callEvent(generatorBreakEvent);
+            });
 
         }
 

@@ -15,7 +15,7 @@ menu:
         - ""
         - " &8▪ &7Member Amount&8: &e%generator_member_amount%"
         - ""
-        - " &8&l→ &eClick for member settings!"
+        - " &8&l→ &eClick to member settings!"
         - ""
 
     autoBreak:
@@ -27,7 +27,7 @@ menu:
         - " &8▪ &7Buyed&8: &e%generator_auto_break_buyed%"
         - " &8▪ &7Enabled&8: &e%generator_auto_break_enabled%"
         - ""
-        - " &8&l→ &eClick for enabler!"
+        - " &8&l→ &eClick to enable!"
         - ""
 
     autoPickup:
@@ -39,7 +39,7 @@ menu:
         - " &8▪ &7Buyed&8: &e%generator_auto_pickup_buyed%"
         - " &8▪ &7Enabled&8: &e%generator_auto_pickup_enabled%"
         - ""
-        - " &8&l→ &eClick for enabler!"
+        - " &8&l→ &eClick to enable!"
         - ""
 
     autoSmelt:
@@ -51,7 +51,7 @@ menu:
         - " &8▪ &7Buyed&8: &e%generator_auto_smelt_buyed%"
         - " &8▪ &7Enabled&8: &e%generator_auto_smelt_enabled%"
         - ""
-        - " &8&l→ &eClick for enabler!"
+        - " &8&l→ &eClick to enable!"
         - ""
 
     autoChest:
@@ -63,7 +63,7 @@ menu:
         - " &8▪ &7Buyed&8: &e%generator_auto_chest_buyed%"
         - " &8▪ &7Enabled&8: &e%generator_auto_chest_enabled%"
         - ""
-        - " &8&l→ &eClick for enabler!"
+        - " &8&l→ &eClick to enable!"
         - ""
 
     delete:
@@ -75,7 +75,7 @@ menu:
         - "&7&o(if you delete the generator,"
         - " &7&oyou will be given the generator item.)"
         - ""
-        - " &8&l→ &eClick for delete generator!"
+        - " &8&l→ &eClick to delete generator!"
         - ""
 
     close:

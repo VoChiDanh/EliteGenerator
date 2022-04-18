@@ -3,9 +3,8 @@ package me.kafein.elitegenerator.generator.feature.auto.autoBreak;
 import me.kafein.elitegenerator.EliteGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
-public class AutoBreakRunnable extends BukkitRunnable {
+public class AutoBreakRunnable implements Runnable {
 
     final private AutoBreakManager autoBreakManager = EliteGenerator.getInstance().getGeneratorManager().getFeatureManager().getAutoBreakManager();
 

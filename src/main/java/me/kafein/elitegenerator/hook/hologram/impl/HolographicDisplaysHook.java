@@ -1,4 +1,4 @@
-package me.kafein.elitegenerator.generator.feature.hologram;
+package me.kafein.elitegenerator.hook.hologram.impl;
 
 import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
@@ -7,14 +7,14 @@ import me.kafein.elitegenerator.EliteGenerator;
 import me.kafein.elitegenerator.config.FileConfig;
 import me.kafein.elitegenerator.config.FileManager;
 import me.kafein.elitegenerator.generator.Generator;
-import me.kafein.elitegenerator.generator.feature.boost.task.BoostRunnable;
+import me.kafein.elitegenerator.hook.hologram.HologramHook;
 import me.kafein.elitegenerator.util.placeholder.PlaceHolder;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 
-public class HologramManager {
+public class HolographicDisplaysHook implements HologramHook {
 
     final private FileConfig fileConfig = EliteGenerator.getInstance().getFileManager().getFile(FileManager.ConfigFile.settings);
 
@@ -23,7 +23,7 @@ public class HologramManager {
     final private Plugin plugin;
     private int boostTimeLine;
 
-    public HologramManager(final Plugin plugin) {
+    public HolographicDisplaysHook(final Plugin plugin) {
         this.plugin = plugin;
         for (int i = 0; i < boostedHologramTexts.size(); i++) {
             if (!boostedHologramTexts.get(i).contains("%generator_boost_time%")) continue;
@@ -48,13 +48,18 @@ public class HologramManager {
     }
 
     public void reloadHologram(final Generator generator) {
-        if (generator.hasHologram()) generator.getHologram().delete();
+        if (generator.hasHologram()) ((Hologram) generator.getHologram()).delete();
         generator.setHologram(null);
         loadHologram(generator);
     }
 
+    @Override
+    public void deleteHologram(Generator generator) {
+        if (generator.hasHologram()) ((Hologram) generator.getHologram()).delete();
+    }
+
     public void reloadBoostLine(final Generator generator) {
-        final TextLine textLine = (TextLine) generator.getHologram().getLine(boostTimeLine);
+        final TextLine textLine = (TextLine) ((Hologram) generator.getHologram()).getLine(boostTimeLine);
         textLine.setText(PlaceHolder.replace(boostedHologramTexts.get(boostTimeLine), generator));
     }
 

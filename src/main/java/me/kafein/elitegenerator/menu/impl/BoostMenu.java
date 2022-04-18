@@ -7,9 +7,9 @@ import me.kafein.elitegenerator.config.FileManager;
 import me.kafein.elitegenerator.generator.Generator;
 import me.kafein.elitegenerator.generator.GeneratorManager;
 import me.kafein.elitegenerator.generator.feature.FeatureManager;
-import me.kafein.elitegenerator.generator.feature.hologram.HologramManager;
 import me.kafein.elitegenerator.generator.feature.upgrade.UpgradeManager;
 import me.kafein.elitegenerator.generator.feature.upgrade.impl.BoostUpgrade;
+import me.kafein.elitegenerator.hook.hologram.HologramHook;
 import me.kafein.elitegenerator.menu.Menu;
 import me.kafein.elitegenerator.menu.event.MenuClickEvent;
 import me.kafein.elitegenerator.menu.event.MenuCloseEvent;
@@ -27,8 +27,8 @@ public class BoostMenu extends Menu {
     final private FileManager fileManager = EliteGenerator.getInstance().getFileManager();
     final private GeneratorManager generatorManager = EliteGenerator.getInstance().getGeneratorManager();
     final private FeatureManager featureManager = generatorManager.getFeatureManager();
-    final private HologramManager hologramManager = featureManager.getHologramManager();
     final private UpgradeManager upgradeManager = featureManager.getUpgradeManager();
+    final private HologramHook hologramHook = EliteGenerator.getInstance().getHookManager().getHologramHook();
 
     public BoostMenu(String title, int slot, FileConfig fileConfig) {
         super(title, slot, fileConfig);
@@ -99,7 +99,7 @@ public class BoostMenu extends Menu {
                 .replace("%level%", Integer.toString(boostLevel))
                 .replace("%duration%", Integer.toString(duration)));
 
-        hologramManager.reloadHologram(generator);
+        hologramHook.reloadHologram(generator);
 
     }
 

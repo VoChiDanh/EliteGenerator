@@ -16,12 +16,8 @@ import me.kafein.elitegenerator.menu.listener.InventoryListener;
 import me.kafein.elitegenerator.storage.StorageManager;
 import me.kafein.elitegenerator.user.UserManager;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 public final class EliteGenerator extends JavaPlugin {
 
@@ -48,14 +44,15 @@ public final class EliteGenerator extends JavaPlugin {
 
         final PluginManager pluginManager = Bukkit.getPluginManager();
 
-        hookManager = new HookManager();
+        fileManager = new FileManager(this);
+        hookManager = new HookManager(this);
 
         if (!VaultHook.setupEconomy(this, pluginManager)) {
             getLogger().warning("Vault is not exists!");
             pluginManager.disablePlugin(this);
             return;
-        } else if (!pluginManager.isPluginEnabled("HolographicDisplays")) {
-            getLogger().warning("HolographicDisplays is not exists!");
+        } else if (!hookManager.hasHologramHook()) {
+            getLogger().warning("Hologram API is not exists!");
             pluginManager.disablePlugin(this);
             return;
         } else if (!hookManager.hasSkyBlockHook()) {
@@ -64,7 +61,6 @@ public final class EliteGenerator extends JavaPlugin {
             return;
         }
 
-        fileManager = new FileManager(this);
         storageManager = new StorageManager(this);
         generatorManager = new GeneratorManager(this);
         userManager = new UserManager();
@@ -98,29 +94,6 @@ public final class EliteGenerator extends JavaPlugin {
         pluginManager.registerEvents(new InteractListener(), this);
         pluginManager.registerEvents(new AutoPickupListener(), this);
 
-    }
-
-    public String getVersion() {
-        return getServer().getClass().getPackage().getName().split("\\.")[3];
-    }
-
-    public Class<?> getNMSClass(String name) throws ClassNotFoundException {
-        return Class.forName("net.minecraft.server." + getVersion() + "." + name);
-    }
-
-    public Class<?> getCraftBukkitNMSClass(String name) throws ClassNotFoundException {
-        return Class.forName("org.bukkit.craftbukkit." + getVersion() + "." + name);
-    }
-
-    public void sendPacket(final Player player, final Object packet) throws Exception {
-        Class<?> craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + getVersion() + ".entity.CraftPlayer");
-        Object craftPlayer = craftPlayerClass.cast(player);
-        Method craftPlayerHandleMethod = craftPlayerClass.getDeclaredMethod("getHandle");
-        Object craftPlayerHandle = craftPlayerHandleMethod.invoke(craftPlayer);
-        Field playerConnectionField = craftPlayerHandle.getClass().getDeclaredField("playerConnection");
-        Object playerConnection = playerConnectionField.get(craftPlayerHandle);
-        Method sendPacketMethod = playerConnection.getClass().getDeclaredMethod("sendPacket", getNMSClass("Packet"));
-        sendPacketMethod.invoke(playerConnection, packet);
     }
 
 }

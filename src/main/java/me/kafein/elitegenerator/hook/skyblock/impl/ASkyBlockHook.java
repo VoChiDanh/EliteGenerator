@@ -5,6 +5,7 @@ import com.wasteofplastic.askyblock.events.*;
 import me.kafein.elitegenerator.generator.Generator;
 import me.kafein.elitegenerator.generator.GeneratorMember;
 import me.kafein.elitegenerator.hook.skyblock.SkyBlockHook;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
@@ -91,7 +92,7 @@ public class ASkyBlockHook extends SkyBlockHook {
 
         final UUID playerUUID = e.getPlayer();
 
-        final Location location = getIslandCenterLocation(playerUUID);
+        final Location location = aSkyBlockAPI.getIslandLocation(e.getNewTeamLeader());
 
         if (!getGeneratorManager().containsGeneratorIslandLocation(location)) return;
 
@@ -110,13 +111,17 @@ public class ASkyBlockHook extends SkyBlockHook {
 
         final UUID playerUUID = e.getPlayer();
 
-        final Location location = getIslandCenterLocation(playerUUID);
+        if (playerUUID.equals(e.getOldTeamLeader())) return;
+
+        final Location location = aSkyBlockAPI.getIslandLocation(e.getOldTeamLeader());
 
         if (!getGeneratorManager().containsGeneratorIslandLocation(location)) return;
 
         for (UUID uuid : getGeneratorManager().getGenerators(location)) {
 
             final Generator generator = getGeneratorManager().getGenerator(uuid);
+
+            if (!generator.containsGeneratorMember(playerUUID)) continue;
 
             generator.removeGeneratorMember(playerUUID);
 

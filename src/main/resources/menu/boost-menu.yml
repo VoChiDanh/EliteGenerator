@@ -27,7 +27,7 @@ menu:
         - "  &8▪ &7Price&8: &a50000$"
         - "  &8▪ &7Exp&8: &a500"
         - ""
-        - "&7&o(Click for boost generator.)"
+        - "&7&o(Click to boost generator.)"
 
     level_2:
       slot: 1
@@ -51,7 +51,7 @@ menu:
         - "  &8▪ &7Exp&8: &a750"
         - "  &8▪ &7Is Level&8: &a2500"
         - ""
-        - "&7&o(Click for boost generator.)"
+        - "&7&o(Click to boost generator.)"
 
     level_3:
       slot: 2
@@ -75,4 +75,4 @@ menu:
         - "  &8▪ &7Exp&8: &a1000"
         - "  &8▪ &7Is Level&8: &a5000"
         - ""
-        - "&7&o(Click for boost generator.)"
+        - "&7&o(Click to boost generator.)"

@@ -102,6 +102,7 @@ public class JsonStorage implements Storage {
                 , LocationSerializer.deserialize(jsonObject.getString("generatorLocation"))
                 , jsonObject.getNumber("level").intValue());
 
+        generator.setCreateDate(jsonObject.getString("createDate"));
         generator.changeOwnerUUID(UUID.fromString(jsonObject.getString("ownerUUID")));
 
         generator.setAutoBreakBuyed(jsonObject.getBoolean("autoBreakBuyed"));

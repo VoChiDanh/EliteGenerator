@@ -10,7 +10,7 @@ menu:
       name: "&6%player%"
       lore:
         - ""
-        - " &7&l→ &eClick for member's settings!"
+        - " &7&l→ &eClick to member's settings!"
         - ""
 
     nextPage:
@@ -18,7 +18,7 @@ menu:
       name: "&6Next Page"
       lore:
         - ""
-        - " &7&l→ &eClick for next page!"
+        - " &7&l→ &eClick to next page!"
         - ""
 
     previousPage:
@@ -26,7 +26,7 @@ menu:
       name: "&6Previous Page"
       lore:
         - ""
-        - " &7&l→ &eClick for previous page!"
+        - " &7&l→ &eClick to previous page!"
         - ""
 
     close:

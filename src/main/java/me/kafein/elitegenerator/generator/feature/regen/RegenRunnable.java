@@ -3,11 +3,10 @@ package me.kafein.elitegenerator.generator.feature.regen;
 import me.kafein.elitegenerator.EliteGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Iterator;
 
-public class RegenRunnable extends BukkitRunnable {
+public class RegenRunnable implements Runnable {
 
     final private RegenManager regenManager = EliteGenerator.getInstance().getGeneratorManager().getFeatureManager().getRegenManager();
 

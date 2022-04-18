@@ -1,6 +1,8 @@
 package me.kafein.elitegenerator.util.item;
 
 import de.tr7zw.changeme.nbtapi.NBTItem;
+import me.kafein.elitegenerator.util.ColorSerializer;
+import me.kafein.elitegenerator.util.material.XMaterial;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -12,6 +14,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class ItemBuilder extends ItemStack {
 
@@ -25,9 +28,10 @@ public class ItemBuilder extends ItemStack {
         this.nbtItem = new NBTItem(itemStack);
     }
 
-    public ItemBuilder(final Material material, int amount, final int damage) {
-        if (amount <= 0) amount = 1;
-        this.itemStack = new ItemStack(material, amount, (byte) damage);
+    public ItemBuilder(final String materialName) {
+        final Optional<XMaterial> optionalXMaterial = XMaterial.matchXMaterial(materialName);
+        if (!optionalXMaterial.isPresent()) throw new NullPointerException("Material is not exists!");
+        this.itemStack = optionalXMaterial.get().parseItem();
         this.itemMeta = itemStack.getItemMeta();
         this.nbtItem = new NBTItem(itemStack);
     }
@@ -38,7 +42,7 @@ public class ItemBuilder extends ItemStack {
 
     public ItemBuilder setName(final String var) {
         if (var == null) return this;
-        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', var));
+        itemMeta.setDisplayName(ColorSerializer.serialize(var));
         return this;
     }
 
@@ -53,23 +57,23 @@ public class ItemBuilder extends ItemStack {
 
     public ItemBuilder setLore(final List<String> list) {
         if (list == null || list.isEmpty()) return this;
-        list.replaceAll(e -> ChatColor.translateAlternateColorCodes('&', e));
+        list.replaceAll(e -> ColorSerializer.serialize(e));
         itemMeta.setLore(list);
         return this;
     }
 
     public ItemBuilder setLoreLine(final int line, final String var) {
         if (itemMeta.getLore() == null || itemMeta.getLore().size() < line) return this;
-        itemMeta.getLore().set(line, ChatColor.translateAlternateColorCodes('&', var));
+        itemMeta.getLore().set(line, ColorSerializer.serialize(var));
         return this;
     }
 
     public ItemBuilder addLore(final String... var) {
         if (var == null) return this;
         if (itemMeta.getLore() == null) {
-            Arrays.stream(var).forEach(e -> ChatColor.translateAlternateColorCodes('&', e));
+            Arrays.stream(var).forEach(e -> ColorSerializer.serialize(e));
             itemMeta.setLore(Arrays.asList(var));
-        }else Arrays.stream(var).forEach(e -> itemMeta.getLore().add(ChatColor.translateAlternateColorCodes('&', e)));
+        }else Arrays.stream(var).forEach(e -> itemMeta.getLore().add(ColorSerializer.serialize(e)));
 
         return this;
     }

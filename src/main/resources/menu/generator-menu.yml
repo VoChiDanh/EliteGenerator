@@ -32,7 +32,7 @@ menu:
       name: "&6Generator Upgrade"
       lore:
         - ""
-        - " &7&l→ &eClick for Upgrade Menu"
+        - " &7&l→ &eClick to Upgrade Menu"
         - ""
 
     settings:
@@ -42,5 +42,5 @@ menu:
       name: "&6Generator Settings"
       lore:
         - ""
-        - " &7&l→ &eClick for Settings Menu"
+        - " &7&l→ &eClick to Settings Menu"
         - ""

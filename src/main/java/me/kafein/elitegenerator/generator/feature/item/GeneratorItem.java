@@ -19,11 +19,7 @@ public class GeneratorItem {
 
         final String prefix = "settings.generator.generator-item.";
 
-        final ItemBuilder itemBuilder = new ItemBuilder(
-                Material.getMaterial(fileConfig.getString(prefix + "material")),
-                fileConfig.getInt(prefix + "amount"),
-                (byte) fileConfig.getInt(prefix + "data"));
-
+        final ItemBuilder itemBuilder = new ItemBuilder(fileConfig.getString(prefix + "material"));
         itemBuilder.setString("generatorItem", "generator");
         itemBuilder.setInteger("level", level);
         itemBuilder.setBoolean("autoBreak", autoBreak);

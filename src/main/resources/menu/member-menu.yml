@@ -24,7 +24,7 @@ menu:
         - ""
         - " &8▪ &7Status&8: &e%generator_break_permission%"
         - ""
-        - " &7&l→ &eClick for enabler!"
+        - " &7&l→ &eClick to enable!"
         - ""
 
     openSettingsPerm:
@@ -34,7 +34,7 @@ menu:
         - ""
         - " &8▪ &7Status&8: &e%generator_open_permission%"
         - ""
-        - " &7&l→ &eClick for enabler!"
+        - " &7&l→ &eClick to enable!"
         - ""
 
     changeSettingsPerm:
@@ -44,7 +44,7 @@ menu:
         - ""
         - " &8▪ &7Status&8: &e%generator_change_permission%"
         - ""
-        - " &7&l→ &eClick for enabler!"
+        - " &7&l→ &eClick to enable!"
         - ""
 
     close:

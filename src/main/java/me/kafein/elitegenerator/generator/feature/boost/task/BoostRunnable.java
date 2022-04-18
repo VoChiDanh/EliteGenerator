@@ -4,17 +4,16 @@ import me.kafein.elitegenerator.EliteGenerator;
 import me.kafein.elitegenerator.generator.Generator;
 import me.kafein.elitegenerator.generator.GeneratorManager;
 import me.kafein.elitegenerator.generator.feature.boost.Boost;
-import me.kafein.elitegenerator.generator.feature.hologram.HologramManager;
+import me.kafein.elitegenerator.hook.hologram.HologramHook;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Iterator;
 
-public class BoostRunnable extends BukkitRunnable {
+public class BoostRunnable implements Runnable {
 
     final private GeneratorManager generatorManager = EliteGenerator.getInstance().getGeneratorManager();
-    final private HologramManager hologramManager = generatorManager.getFeatureManager().getHologramManager();
+    final private HologramHook hologramHook = EliteGenerator.getInstance().getHookManager().getHologramHook();
 
     final private Plugin plugin;
 
@@ -40,11 +39,11 @@ public class BoostRunnable extends BukkitRunnable {
 
             if (boost.getTime() <= 0) {
                 generator.clearBoost();
-                Bukkit.getScheduler().runTask(plugin, () -> hologramManager.reloadHologram(generator));
+                Bukkit.getScheduler().runTask(plugin, () -> hologramHook.reloadHologram(generator));
             }
             else {
                 boost.removeTime(1);
-                hologramManager.reloadBoostLine(generator);
+                hologramHook.reloadBoostLine(generator);
             }
 
         }

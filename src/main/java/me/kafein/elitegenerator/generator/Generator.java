@@ -1,6 +1,5 @@
 package me.kafein.elitegenerator.generator;
 
-import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import me.kafein.elitegenerator.generator.feature.auto.autoChest.AutoChest;
 import me.kafein.elitegenerator.generator.feature.boost.Boost;
 import me.kafein.elitegenerator.generator.feature.permission.MemberPermission;
@@ -16,7 +15,7 @@ public class Generator {
     private Map<UUID, GeneratorMember> generatorMembers = new HashMap<>();
     private UUID ownerUUID;
 
-    private Hologram hologram;
+    private Object hologram;
 
     private Boost boost;
 
@@ -132,21 +131,16 @@ public class Generator {
         return boost != null;
     }
 
-    public Hologram getHologram() {
+    public Object getHologram() {
         return hologram;
     }
 
-    public void setHologram(Hologram hologram) {
+    public void setHologram(Object hologram) {
         this.hologram = hologram;
     }
 
     public boolean hasHologram() {
         return hologram != null;
-    }
-
-    public void clearHologram() {
-        hologram.delete();
-        hologram = null;
     }
 
     public boolean isAutoBreakBuyed() {

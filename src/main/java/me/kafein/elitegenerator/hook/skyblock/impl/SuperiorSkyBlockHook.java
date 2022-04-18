@@ -55,6 +55,7 @@ public class SuperiorSkyBlockHook extends SkyBlockHook {
     public List<UUID> getIslandMembers(UUID playerUUID) {
         final Island island = playersManager.getSuperiorPlayer(playerUUID).getIsland();
         final List<UUID> memberList = new ArrayList<>();
+        memberList.add(playerUUID);
         island.getIslandMembers().forEach(member -> memberList.add(member.getUniqueId()));
         return memberList;
     }

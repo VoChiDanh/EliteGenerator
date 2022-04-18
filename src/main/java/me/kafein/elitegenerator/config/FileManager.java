@@ -1,5 +1,6 @@
 package me.kafein.elitegenerator.config;
 
+import me.kafein.elitegenerator.util.ColorSerializer;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -63,13 +64,13 @@ public class FileManager {
     }
 
     public String getMessage(final String property) {
-        return ChatColor.translateAlternateColorCodes('&', getFile(ConfigFile.language).getString("language." + property)
+        return ColorSerializer.serialize(getFile(ConfigFile.language).getString("language." + property)
                 .replace("%prefix%", getFile(ConfigFile.language).getString("language.prefix")));
     }
 
     public List<String> getMessageList(final String property) {
         final List<String> list = getFile(ConfigFile.language).getStringList("language." + property);
-        list.replaceAll(message -> ChatColor.translateAlternateColorCodes('&', message));
+        list.replaceAll(message -> ColorSerializer.serialize(message));
         return list;
     }
 

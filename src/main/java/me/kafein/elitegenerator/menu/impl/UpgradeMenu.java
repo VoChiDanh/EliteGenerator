@@ -11,6 +11,7 @@ import me.kafein.elitegenerator.generator.feature.permission.MemberPermission;
 import me.kafein.elitegenerator.generator.feature.upgrade.Upgrade;
 import me.kafein.elitegenerator.generator.feature.upgrade.UpgradeManager;
 import me.kafein.elitegenerator.generator.feature.upgrade.UpgradeType;
+import me.kafein.elitegenerator.hook.hologram.HologramHook;
 import me.kafein.elitegenerator.menu.Menu;
 import me.kafein.elitegenerator.menu.MenuManager;
 import me.kafein.elitegenerator.menu.event.MenuClickEvent;
@@ -22,7 +23,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
@@ -31,6 +31,7 @@ public class UpgradeMenu extends Menu {
     final private FileManager fileManager = EliteGenerator.getInstance().getFileManager();
     final private GeneratorManager generatorManager = EliteGenerator.getInstance().getGeneratorManager();
     final private FeatureManager featureManager = generatorManager.getFeatureManager();
+    final private HologramHook hologramHook = EliteGenerator.getInstance().getHookManager().getHologramHook();
     final private UpgradeManager upgradeManager = featureManager.getUpgradeManager();
 
     public UpgradeMenu(String title, int slot, FileConfig fileConfig) {
@@ -42,7 +43,8 @@ public class UpgradeMenu extends Menu {
     }
 
     @Override
-    public void loadItems() {}
+    public void loadItems() {
+    }
 
     public void openMenu(Player player, Generator generator) {
 
@@ -106,18 +108,19 @@ public class UpgradeMenu extends Menu {
 
             upgrade.applyRequirements(player, generator);
             upgrade.apply(generator);
+            hologramHook.reloadHologram(generator);
             openMenu(player, generator);
             player.sendMessage(fileManager.getMessage("generator.upgrade.generatorLevelUpgrade")
                     .replace("%level%", Integer.toString(nextLevel)));
 
-        }else if (e.getSlot() == fileConfig.getInt("menu.items.boost.slot")) {
+        } else if (e.getSlot() == fileConfig.getInt("menu.items.boost.slot")) {
 
             if (!generator.containsMemberPermission(player.getUniqueId(), MemberPermission.CHANGE_SETTINGS)) return;
 
             final BoostMenu boostMenu = (BoostMenu) getMenuManager().getMenu(MenuManager.MenuType.BOOST);
             boostMenu.openMenu(player, generator);
 
-        }else if (e.getSlot() == fileConfig.getInt("menu.items.autoBreak.slot")) {
+        } else if (e.getSlot() == fileConfig.getInt("menu.items.autoBreak.slot")) {
 
             if (!generator.containsMemberPermission(player.getUniqueId(), MemberPermission.CHANGE_SETTINGS)) return;
 
@@ -133,10 +136,11 @@ public class UpgradeMenu extends Menu {
 
             upgrade.applyRequirements(player, generator);
             upgrade.apply(generator);
+            hologramHook.reloadHologram(generator);
             openMenu(player, generator);
             player.sendMessage(fileManager.getMessage("generator.upgrade.generatorAutoBreakUpgrade"));
 
-        }else if (e.getSlot() == fileConfig.getInt("menu.items.autoPickup.slot")) {
+        } else if (e.getSlot() == fileConfig.getInt("menu.items.autoPickup.slot")) {
 
             if (!generator.containsMemberPermission(player.getUniqueId(), MemberPermission.CHANGE_SETTINGS)) return;
 
@@ -152,10 +156,11 @@ public class UpgradeMenu extends Menu {
 
             upgrade.applyRequirements(player, generator);
             upgrade.apply(generator);
+            hologramHook.reloadHologram(generator);
             openMenu(player, generator);
             player.sendMessage(fileManager.getMessage("generator.upgrade.generatorAutoPickupUpgrade"));
 
-        }else if (e.getSlot() == fileConfig.getInt("menu.items.autoSmelt.slot")) {
+        } else if (e.getSlot() == fileConfig.getInt("menu.items.autoSmelt.slot")) {
 
             if (!generator.containsMemberPermission(player.getUniqueId(), MemberPermission.CHANGE_SETTINGS)) return;
 
@@ -171,10 +176,11 @@ public class UpgradeMenu extends Menu {
 
             upgrade.applyRequirements(player, generator);
             upgrade.apply(generator);
+            hologramHook.reloadHologram(generator);
             openMenu(player, generator);
             player.sendMessage(fileManager.getMessage("generator.upgrade.generatorAutoSmeltUpgrade"));
 
-        }else if (e.getSlot() == fileConfig.getInt("menu.items.autoChest.slot")) {
+        } else if (e.getSlot() == fileConfig.getInt("menu.items.autoChest.slot")) {
 
             if (!generator.containsMemberPermission(player.getUniqueId(), MemberPermission.CHANGE_SETTINGS)) return;
 
@@ -190,10 +196,11 @@ public class UpgradeMenu extends Menu {
 
             upgrade.applyRequirements(player, generator);
             upgrade.apply(generator);
+            hologramHook.reloadHologram(generator);
             openMenu(player, generator);
             player.sendMessage(fileManager.getMessage("generator.upgrade.generatorAutoChestUpgrade"));
 
-        }else if (e.getSlot() == fileConfig.getInt("menu.items.close.slot")) {
+        } else if (e.getSlot() == fileConfig.getInt("menu.items.close.slot")) {
 
             final GeneratorMenu generatorMenu = (GeneratorMenu) EliteGenerator.getInstance().getMenuManager().getMenu(MenuManager.MenuType.GENERATOR);
             generatorMenu.openMenu(e.getPlayer(), generator);
@@ -203,10 +210,12 @@ public class UpgradeMenu extends Menu {
     }
 
     @Override
-    public void onOpen(MenuOpenEvent e) {}
+    public void onOpen(MenuOpenEvent e) {
+    }
 
     @Override
-    public void onClose(MenuCloseEvent e) {}
+    public void onClose(MenuCloseEvent e) {
+    }
 
 }
 

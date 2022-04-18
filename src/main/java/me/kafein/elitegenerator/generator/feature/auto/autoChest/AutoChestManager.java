@@ -1,10 +1,13 @@
 package me.kafein.elitegenerator.generator.feature.auto.autoChest;
 
+import lombok.SneakyThrows;
 import me.kafein.elitegenerator.EliteGenerator;
-import me.kafein.elitegenerator.announcer.AnnouncerManager;
 import me.kafein.elitegenerator.config.FileManager;
 import me.kafein.elitegenerator.generator.Generator;
 import me.kafein.elitegenerator.generator.GeneratorManager;
+import me.kafein.elitegenerator.util.reflection.ReflectionUtils;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -12,6 +15,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.annotation.Nullable;
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -56,7 +60,14 @@ public class AutoChestManager {
                 }
 
                 time--;
-                AnnouncerManager.getActionBarAnnounce().send(player, ChatColor.translateAlternateColorCodes('&', message.replace("%time%", Integer.toString(time))));
+
+                final String text = ChatColor.translateAlternateColorCodes('&', message.replace("%time%", Integer.toString(time)));
+                try {
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(text));
+                }catch (NoSuchMethodError e) {
+                    send1_8(player, text);
+                }
+
 
             }
 
@@ -75,6 +86,34 @@ public class AutoChestManager {
     public GeneratorManager getGeneratorManager() {
         if (generatorManager == null) generatorManager = EliteGenerator.getInstance().getGeneratorManager();
         return generatorManager;
+    }
+
+    @SneakyThrows
+    private void send1_8(final Player player, final String message) {
+
+        ReflectionUtils.PackageType packageType = ReflectionUtils.PackageType.MINECRAFT_SERVER;
+
+        Object packet;
+        try {
+            Class<?> chatMessageTypeClass = packageType.getClass("ChatMessageType");
+            Object[] chatMessageTypes = chatMessageTypeClass.getEnumConstants();
+            Object chatMessageType = null;
+            for (Object obj : chatMessageTypes) {
+                if (obj.toString().equals("GAME_INFO")) {
+                    chatMessageType = obj;
+                }
+            }
+            Object chatComponentText = packageType.getClass("").getConstructor(new Class<?>[]{String.class}).newInstance(message);
+            packet = packageType.getClass("PacketPlayOutChat").getConstructor(new Class<?>[]{packageType.getClass("IChatBaseComponent"), chatMessageTypeClass}).newInstance(chatComponentText, chatMessageType);
+        } catch (ClassNotFoundException e) {
+            Object chatComponentText = packageType.getClass("ChatComponentText").getConstructor(new Class<?>[]{String.class}).newInstance(message);
+            packet = packageType.getClass("PacketPlayOutChat").getConstructor(new Class<?>[]{packageType.getClass("IChatBaseComponent"), byte.class}).newInstance(chatComponentText, (byte) 2);
+        }
+
+        final Object entityPlayer = player.getClass().getMethod("getHandle", new Class[0]).invoke(player, new Object[0]);
+        final Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
+        playerConnection.getClass().getMethod("sendPacket", packageType.getClass("Packet")).invoke(playerConnection, packet);
+
     }
 
 }

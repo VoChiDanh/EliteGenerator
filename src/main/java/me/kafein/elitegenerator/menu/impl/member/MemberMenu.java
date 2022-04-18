@@ -169,12 +169,7 @@ public class MemberMenu extends Menu {
 
     private ItemStack getEnabledItem(final Generator generator, final UUID memberUUID, final String memberName) {
 
-        ItemBuilder itemBuilder;
-
-        Material material = Material.getMaterial("GREEN_STAINED_GLASS_PANE");
-        if (material == null) itemBuilder = new ItemBuilder(Material.getMaterial("STAINED_GLASS_PANE"), 1, (byte) 5);
-        else itemBuilder = new ItemBuilder(material, 1, (byte) 0);
-
+        ItemBuilder itemBuilder = new ItemBuilder("LIME_STAINED_GLASS_PANE");
         itemBuilder.setString("generator", generator.getGeneratorUUID().toString());
         itemBuilder.setString("memberUUID", memberUUID.toString());
         itemBuilder.setString("memberName", memberName);
@@ -185,11 +180,7 @@ public class MemberMenu extends Menu {
 
     private ItemStack getDisabledItem(final Generator generator, final UUID memberUUID, final String memberName) {
 
-        ItemBuilder itemBuilder;
-
-        Material material = Material.getMaterial("RED_STAINED_GLASS_PANE");
-        if (material == null) itemBuilder = new ItemBuilder(Material.getMaterial("STAINED_GLASS_PANE"), 1, (byte) 14);
-        else itemBuilder = new ItemBuilder(material, 1, (byte) 0);
+        ItemBuilder itemBuilder = new ItemBuilder("RED_STAINED_GLASS_PANE");
 
         itemBuilder.setString("generator", generator.getGeneratorUUID().toString());
         itemBuilder.setString("memberUUID", memberUUID.toString());

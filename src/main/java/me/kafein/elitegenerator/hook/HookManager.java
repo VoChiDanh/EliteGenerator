@@ -1,21 +1,29 @@
 package me.kafein.elitegenerator.hook;
 
+import me.kafein.elitegenerator.hook.hologram.HologramHook;
+import me.kafein.elitegenerator.hook.hologram.impl.DecentHologramsHook;
+import me.kafein.elitegenerator.hook.hologram.impl.HolographicDisplaysHook;
 import me.kafein.elitegenerator.hook.skyblock.SkyBlockHook;
 import me.kafein.elitegenerator.hook.skyblock.impl.*;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
 import javax.annotation.Nullable;
 
 public class HookManager {
 
+    private HologramHook hologramHook;
     private SkyBlockHook skyBlockHook;
 
-    public HookManager() {
-        loadSkyBlockHook();
+    final private Plugin plugin;
+
+    public HookManager(final Plugin plugin) {
+        this.plugin = plugin;
+        loadHooks();
     }
 
-    private void loadSkyBlockHook() {
+    private void loadHooks() {
 
         final PluginManager pluginManager = Bukkit.getPluginManager();
 
@@ -25,6 +33,18 @@ public class HookManager {
         else if (pluginManager.isPluginEnabled("IridiumSkyblock")) skyBlockHook = new IridiumSkyBlockHook();
         else if (pluginManager.isPluginEnabled("FabledSkyBlock")) skyBlockHook = new FabledSkyBlockHook();
 
+        if (pluginManager.isPluginEnabled("HolographicDisplays")) hologramHook = new HolographicDisplaysHook(plugin);
+        else if (pluginManager.isPluginEnabled("DecentHolograms")) hologramHook = new DecentHologramsHook(plugin);
+
+    }
+
+    @Nullable
+    public HologramHook getHologramHook() {
+        return hologramHook;
+    }
+
+    public boolean hasHologramHook() {
+        return hologramHook != null;
     }
 
     @Nullable

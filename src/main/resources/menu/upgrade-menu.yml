@@ -39,7 +39,7 @@ menu:
           - "   &8▪ &7Is Level&8: &a750"
           - "   &8▪ &7AutoPickup&8: &aBuyed"
           - ""
-          - " &d&o(Click for upgrade.)"
+          - " &d&o(Click to upgrade.)"
 
       level_2:
         material: "EXP_BOTTLE"
@@ -71,7 +71,7 @@ menu:
           - "   &8▪ &7Is Level&8: &a1250"
           - "   &8▪ &7AutoSmelt&8: &aBuyed"
           - ""
-          - "&7&o(Click for upgrade.)"
+          - "&7&o(Click to upgrade.)"
 
       level_3:
         material: "EXP_BOTTLE"
@@ -105,7 +105,7 @@ menu:
           - "   &8▪ &7Is Level&8: &a2500"
           - "   &8▪ &7AutoChest&8: &aBuyed"
           - ""
-          - "&7&o(Click for upgrade.)"
+          - "&7&o(Click to upgrade.)"
 
       level_4:
         material: "EXP_BOTTLE"
@@ -139,7 +139,7 @@ menu:
           - "   &8▪ &7Is Level&8: &a5000"
           - "   &8▪ &7AutoBreak&8: &aBuyed"
           - ""
-          - "&7&o(Click for upgrade.)"
+          - "&7&o(Click to upgrade.)"
 
       level_5:
         material: "EXP_BOTTLE"
@@ -162,7 +162,7 @@ menu:
       name: "&6Boost"
       lore:
         - ""
-        - " &8&l→ &eClick for boost generator."
+        - " &8&l→ &eClick to boost generator."
         - ""
       boosted-generator-lore:
         - ""
@@ -177,6 +177,8 @@ menu:
       name: "&6Auto Break"
       lore:
         - ""
+        - " &8▪ &7Buyed&8: &e%generator_auto_break_buyed%"
+        - ""
         - " &8&l→ &7Requirements&8;"
         - "   &8▪ &7Level&8: &a4$"
         - "   &8▪ &7Price&8: &a50000$"
@@ -188,6 +190,8 @@ menu:
       name: "&6Auto Pickup"
       lore:
         - ""
+        - " &8▪ &7Buyed&8: &e%generator_auto_pickup_buyed%"
+        - ""
         - " &8&l→ &7Requirements&8;"
         - "   &8▪ &7Price&8: &a10000$"
         - ""
@@ -197,6 +201,8 @@ menu:
       material: "FURNACE"
       name: "&6Auto Smelt"
       lore:
+        - ""
+        - " &8▪ &7Buyed&8: &e%generator_auto_smelt_buyed%"
         - ""
         - " &8&l→ &7Requirements&8;"
         - "   &8▪ &7Level&8: &a2"
@@ -208,6 +214,8 @@ menu:
       material: "CHEST"
       name: "&6Auto Chest"
       lore:
+        - ""
+        - " &8▪ &7Buyed&8: &e%generator_auto_chest_buyed%"
         - ""
         - " &8&l→ &7Requirements&8;"
         - "   &8▪ &7Level&8: &a3"

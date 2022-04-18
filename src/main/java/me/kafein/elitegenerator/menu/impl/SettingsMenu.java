@@ -143,11 +143,13 @@ public class SettingsMenu extends Menu {
 
             if (autoChestManager.containsAutoChestPlayer(player.getUniqueId())) return;
 
+            if (generator.isAutoChestEnabled()) {
+                generator.clearAutoChest();
+            }else {
+                generator.clearAutoChest();
+                autoChestManager.addAutoChestPlayer(player.getUniqueId(), generatorUUID);
+            }
             player.closeInventory();
-            generator.clearAutoChest();
-            autoChestManager.addAutoChestPlayer(player.getUniqueId(), generatorUUID);
-
-            openMenu(player, generator);
 
         } else if (e.getSlot() == fileConfig.getInt("menu.items.delete.slot")) {
 

@@ -9,6 +9,7 @@ import me.kafein.elitegenerator.generator.feature.boost.task.BoostRunnable;
 import me.kafein.elitegenerator.generator.feature.calendar.CalendarSerializer;
 import me.kafein.elitegenerator.generator.feature.item.GeneratorItem;
 import me.kafein.elitegenerator.generator.feature.permission.MemberPermission;
+import me.kafein.elitegenerator.hook.hologram.HologramHook;
 import me.kafein.elitegenerator.hook.skyblock.SkyBlockHook;
 import me.kafein.elitegenerator.storage.Storage;
 import me.kafein.elitegenerator.user.User;
@@ -27,6 +28,7 @@ public class GeneratorManager {
 
     final private FileManager fileManager = EliteGenerator.getInstance().getFileManager();
     final private Storage storage = EliteGenerator.getInstance().getStorageManager().get();
+    final private HologramHook hologramHook = EliteGenerator.getInstance().getHookManager().getHologramHook();
     final private SkyBlockHook skyBlockHook = EliteGenerator.getInstance().getHookManager().getSkyBlockHook();
     final private FeatureManager featureManager;
     private UserManager userManager;
@@ -141,7 +143,7 @@ public class GeneratorManager {
 
         Bukkit.getScheduler().runTask(plugin, () -> {
             generator.getGeneratorLocation().getBlock().setType(firstBlockMaterial);
-            featureManager.getHologramManager().loadHologram(generator);
+            hologramHook.loadHologram(generator);
         });
 
         if (generator.isAutoBreakEnabled()) {
@@ -176,7 +178,7 @@ public class GeneratorManager {
 
         final Generator generator = generators.get(generatorUUID);
 
-        generator.clearHologram();
+        hologramHook.deleteHologram(generator);
 
         storage.saveGenerator(generator);
 
@@ -217,7 +219,7 @@ public class GeneratorManager {
 
         if (generatorDeleteEvent.isCancelled()) return false;
 
-        if (generator.hasHologram()) generator.clearHologram();
+        hologramHook.deleteHologram(generator);
 
         featureManager.getRegenManager().removeRegenGenerator(generator.getGeneratorLocation());
         generatorLocations.remove(generator.getGeneratorLocation());

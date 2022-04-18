@@ -6,7 +6,6 @@ import me.kafein.elitegenerator.generator.feature.auto.autoBreak.AutoBreakManage
 import me.kafein.elitegenerator.generator.feature.auto.autoChest.AutoChestManager;
 import me.kafein.elitegenerator.generator.feature.auto.autoPickup.AutoPickupManager;
 import me.kafein.elitegenerator.generator.feature.auto.autoSmelt.AutoSmeltManager;
-import me.kafein.elitegenerator.generator.feature.hologram.HologramManager;
 import me.kafein.elitegenerator.generator.feature.oreGen.OreGenManager;
 import me.kafein.elitegenerator.generator.feature.regen.RegenManager;
 import me.kafein.elitegenerator.generator.feature.upgrade.UpgradeManager;
@@ -17,7 +16,6 @@ import org.bukkit.plugin.Plugin;
 public class FeatureManager {
 
     final private UpgradeManager upgradeManager;
-    final private HologramManager hologramManager;
     final private RegenManager regenManager;
     final private OreGenManager oreGenManager;
     final private AutoBreakManager autoBreakManager;
@@ -30,7 +28,6 @@ public class FeatureManager {
     public FeatureManager(final Plugin plugin) {
         this.plugin = plugin;
         upgradeManager = new UpgradeManager();
-        hologramManager = new HologramManager(plugin);
         regenManager = new RegenManager(plugin);
         oreGenManager = new OreGenManager();
         autoBreakManager = new AutoBreakManager(plugin);

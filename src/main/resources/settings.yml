@@ -25,7 +25,7 @@ settings:
       enchant:
         - "DURABILITY: 5"
 
-    autoChestTimeLeftMessage: "&eTime left &6(%time%s) &7for any chest"
+    autoChestTimeLeftMessage: "&6You have &6&l%time% &6seconds to click any chest!"
 
     hologram:
 

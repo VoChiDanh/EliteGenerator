@@ -24,6 +24,7 @@ public abstract class SkyBlockHook implements Listener {
         return generatorManager;
     }
 
+    @Nullable
     public abstract World getIslandWorld();
 
     public abstract boolean hasIsland(final UUID playerUUID);

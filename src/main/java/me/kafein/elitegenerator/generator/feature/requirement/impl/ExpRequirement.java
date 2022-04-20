@@ -13,12 +13,12 @@ public class ExpRequirement extends Requirement {
     @Override
     public void apply(Object target) {
         final Player player = (Player) target;
-        player.setExp(player.getExp() - getNumberRequirement().intValue());
+        player.setTotalExperience(player.getTotalExperience() - getNumberRequirement().intValue());
     }
 
     @Override
     public boolean has(Object target) {
-        return ((Player) target).getExp() >= getNumberRequirement().intValue();
+        return ((Player) target).getTotalExperience() >= getNumberRequirement().intValue();
     }
 
     @Override

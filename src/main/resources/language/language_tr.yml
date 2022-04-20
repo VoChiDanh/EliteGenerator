@@ -27,11 +27,18 @@ language:
     generatorPlaced: "%prefix% &eJeneratör yere koyuldu."
     generatorDeleted: "%prefix% &eJeneratör silindi ve sana eşyası verildi."
 
-    generatorIslandLimit: "%prefix% &7Adana koyabileceğin maksimum jeneratör sayısı &e%max_generator_amount% &7kadardır."
+    generatorIslandLimit: "%prefix% &7Adana koyabileceğin maksimum jeneratör sayısı &e%group% &7yetkisi için &e%max_generator_amount% &7kadardır."
     thisWorldIsNotIslandWorld: "%prefix% &eJeneratörü sadece adana koyabilirsin."
     thisIslandIsNotYour: "%prefix% &eBunun için ada sahibi olmalısın."
 
     generatorIsNotUpgraded: "%prefix% &7Jeneratör yeterlilikler sağlanmadığı için yükseltilemedi."
+
+    placeHolder:
+      generatorName: "&e%owner%'nın Jeneratörü"
+      buyed: "Alındı"
+      notbuyed: "Alınmadı"
+      enabled: "Aktif"
+      disabled: "DeAktif"
 
     upgrade:
 

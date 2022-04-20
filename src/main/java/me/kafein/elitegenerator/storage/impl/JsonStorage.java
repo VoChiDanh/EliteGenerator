@@ -102,6 +102,7 @@ public class JsonStorage implements Storage {
                 , LocationSerializer.deserialize(jsonObject.getString("generatorLocation"))
                 , jsonObject.getNumber("level").intValue());
 
+        if (jsonObject.has("hologramEnabled")) generator.setHologramEnabled(jsonObject.getBoolean("hologramEnabled"));
         generator.setCreateDate(jsonObject.getString("createDate"));
         generator.changeOwnerUUID(UUID.fromString(jsonObject.getString("ownerUUID")));
 
@@ -156,6 +157,7 @@ public class JsonStorage implements Storage {
 
         jsonObject.add("level", generator.getLevel());
         jsonObject.add("boost", generator.hasBoost() ? generator.getBoost().getLevel() + "_" + CalendarSerializer.serialize(generator.getBoost().getTime()) : "none");
+        jsonObject.add("hologramEnabled", generator.isHologramEnabled());
         jsonObject.add("autoBreakBuyed", generator.isAutoBreakBuyed());
         jsonObject.add("autoBreakEnabled", generator.isAutoBreakEnabled());
         jsonObject.add("autoPickupBuyed", generator.isAutoPickupBuyed());

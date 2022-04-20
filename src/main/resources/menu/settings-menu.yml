@@ -1,7 +1,7 @@
 menu:
 
   title: "&6&lEG &7➜ &eSettings"
-  size: 45
+  size: 54
 
   fill: true
 
@@ -19,7 +19,7 @@ menu:
         - ""
 
     autoBreak:
-      slot: 29
+      slot: 30
       material: "DIAMOND_PICKAXE"
       name: "&6Auto Break"
       lore:
@@ -31,7 +31,7 @@ menu:
         - ""
 
     autoPickup:
-      slot: 30
+      slot: 31
       material: "HOPPER"
       name: "&6Auto Pickup"
       lore:
@@ -43,7 +43,7 @@ menu:
         - ""
 
     autoSmelt:
-      slot: 31
+      slot: 32
       material: "FURNACE"
       name: "&6Auto Smelt"
       lore:
@@ -55,7 +55,7 @@ menu:
         - ""
 
     autoChest:
-      slot: 32
+      slot: 39
       material: "CHEST"
       name: "&6Auto Chest"
       lore:
@@ -66,8 +66,19 @@ menu:
         - " &8&l→ &eClick to enable!"
         - ""
 
+    hologram:
+      slot: 40
+      material: "SIGN"
+      name: "&6Generator's Hologram"
+      lore:
+        - ""
+        - " &8▪ &7Enabled&8: &e%generator_hologram_enabled%"
+        - ""
+        - " &8&l→ &eClick to enable!"
+        - ""
+
     delete:
-      slot: 33
+      slot: 41
       material: "BARRIER"
       name: "&6Delete Generator"
       lore:

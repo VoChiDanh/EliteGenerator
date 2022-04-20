@@ -9,11 +9,14 @@ import me.kafein.elitegenerator.generator.feature.boost.task.BoostRunnable;
 import me.kafein.elitegenerator.generator.feature.calendar.CalendarSerializer;
 import me.kafein.elitegenerator.generator.feature.item.GeneratorItem;
 import me.kafein.elitegenerator.generator.feature.permission.MemberPermission;
+import me.kafein.elitegenerator.hook.VaultHook;
 import me.kafein.elitegenerator.hook.hologram.HologramHook;
 import me.kafein.elitegenerator.hook.skyblock.SkyBlockHook;
 import me.kafein.elitegenerator.storage.Storage;
 import me.kafein.elitegenerator.user.User;
 import me.kafein.elitegenerator.user.UserManager;
+import net.milkbowl.vault.permission.Permission;
+import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -30,19 +33,16 @@ public class GeneratorManager {
     final private Storage storage = EliteGenerator.getInstance().getStorageManager().get();
     final private HologramHook hologramHook = EliteGenerator.getInstance().getHookManager().getHologramHook();
     final private SkyBlockHook skyBlockHook = EliteGenerator.getInstance().getHookManager().getSkyBlockHook();
+    final private Permission permission = VaultHook.getPermission();
     final private FeatureManager featureManager;
-    private UserManager userManager;
-
     final private Map<UUID, Generator> generators = new HashMap<>();
     final private Map<Location, UUID> generatorLocations = new HashMap<>();
     final private Map<Location, List<UUID>> generatorIslands = new HashMap<>();
-
+    final private Plugin plugin;
+    private UserManager userManager;
     private GeneratorItem generatorItem = new GeneratorItem(fileManager.getFile(FileManager.ConfigFile.settings));
     private Material firstBlockMaterial = Material.getMaterial(fileManager.getFile(FileManager.ConfigFile.settings).getString("settings.generator.generator-first-material"));
-
     private boolean boostRunnableStarted;
-
-    final private Plugin plugin;
 
     public GeneratorManager(final Plugin plugin) {
         this.plugin = plugin;
@@ -70,7 +70,7 @@ public class GeneratorManager {
 
             owner.sendMessage(fileManager.getMessage("generator.thisWorldIsNotIslandWorld"));
             return false;
-            
+
         }
 
         if (!skyBlockHook.hasIsland(ownerUUID)
@@ -79,23 +79,41 @@ public class GeneratorManager {
             return false;
         }
 
-        final Location islandLocation = skyBlockHook.getIslandCenterLocation(ownerUUID);
+        final Location islandLocation = skyBlockHook.getIslandCenterLocation(ownerUUID).getBlock().getLocation();
 
-        if (generatorIslands.containsKey(islandLocation)
-                && generatorIslands.get(islandLocation).size() >= fileManager.getFile(FileManager.ConfigFile.settings).getInt("settings.generator.generator-island-limit")) {
+        if (generatorIslands.containsKey(islandLocation)) {
 
-            owner.sendMessage(fileManager.getMessage("generator.generatorIslandLimit")
-                    .replace("%max_generator_amount%", Integer.toString(fileManager.getFile(FileManager.ConfigFile.settings).getInt("settings.generator.generator-island-limit"))));
-            return false;
+            int generatorAmount = generatorIslands.get(islandLocation).size();
+            int generatorAmountLimit = 0;
+
+            Optional<String> optionalPlayerGroup = Optional.ofNullable(permission.getPrimaryGroup(owner));
+            String playerGroup = optionalPlayerGroup.orElse("default");
+            Set<String> limited_groups = fileManager.getFile(FileManager.ConfigFile.settings).getConfigurationSection("settings.generator.generator-island-limit").getKeys(false);
+            if (limited_groups.contains(playerGroup)) {
+                generatorAmountLimit = fileManager.getFile(FileManager.ConfigFile.settings).getInt("settings.generator.generator-island-limit." + playerGroup);
+            } else {
+                generatorAmountLimit = fileManager.getFile(FileManager.ConfigFile.settings).getInt("settings.generator.generator-island-limit.default");
+            }
+
+            if (generatorAmount >= generatorAmountLimit) {
+                owner.sendMessage(fileManager.getMessage("generator.generatorIslandLimit")
+                        .replace("%max_generator_amount%", Integer.toString(generatorAmountLimit))
+                        .replace("%group%", playerGroup));
+                return false;
+            }
 
         }
 
-        final Generator generator = new Generator(islandLocation, generatorUUID, owner.getName() + "'s Generator", location, level);
+        final Generator generator = new Generator(islandLocation, generatorUUID,
+                fileManager.getFile(FileManager.ConfigFile.language).getString("language.generator.placeHolder.generatorName")
+                        .replace("%owner%", owner.getName())
+                , location, level);
         generator.changeOwnerUUID(ownerUUID);
         generator.setAutoBreakBuyed(autoBreak);
         generator.setAutoPickupBuyed(autoPickup);
         generator.setAutoSmeltBuyed(autoSmelt);
         generator.setAutoChestBuyed(autoChest);
+        generator.setHologramEnabled(true);
 
         generator.setCreateDate(CalendarSerializer.nowDate());
 
@@ -182,7 +200,8 @@ public class GeneratorManager {
 
         storage.saveGenerator(generator);
 
-        if (generator.isAutoBreakEnabled()) featureManager.getAutoBreakManager().removeAutoBreakerGenerator(generatorUUID);
+        if (generator.isAutoBreakEnabled())
+            featureManager.getAutoBreakManager().removeAutoBreakerGenerator(generatorUUID);
 
         generatorLocations.remove(generator.getGeneratorLocation());
         generatorIslands.get(generator.getIslandLocation()).remove(generatorUUID);

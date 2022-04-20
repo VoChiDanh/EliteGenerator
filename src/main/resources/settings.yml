@@ -5,8 +5,11 @@ settings:
 
   generator:
 
-    #default: 3
-    generator-island-limit: 3
+    #You can limit the generator to some groups
+    #group: limit
+    generator-island-limit:
+      default: 3
+      vip: 5
 
     generator-first-material: "REDSTONE_ORE"
 

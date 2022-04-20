@@ -75,11 +75,6 @@ public class MenuManager {
 
     }
 
-    public void reload() {
-        menuPlayersCloseMenu();
-        load();
-    }
-
     @Nullable
     public Menu getMenu(final String name) {
         return menus.get(name);

@@ -67,6 +67,10 @@ public class JsonObject {
         jsonObject.add(property, jsonElement);
     }
 
+    public boolean has(final String property) {
+        return jsonObject.has(property);
+    }
+
     public String getString(final String property) {
         return gson.fromJson(jsonObject.get(property), String.class);
     }

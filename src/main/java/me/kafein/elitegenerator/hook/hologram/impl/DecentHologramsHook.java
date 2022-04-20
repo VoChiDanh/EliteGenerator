@@ -10,9 +10,7 @@ import me.kafein.elitegenerator.config.FileManager;
 import me.kafein.elitegenerator.generator.Generator;
 import me.kafein.elitegenerator.hook.hologram.HologramHook;
 import me.kafein.elitegenerator.util.placeholder.PlaceHolder;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 
@@ -22,11 +20,9 @@ public class DecentHologramsHook implements HologramHook {
 
     final private List<String> classicHologramTexts = fileConfig.getStringList("settings.generator.hologram.classic-hologram");
     final private List<String> boostedHologramTexts = fileConfig.getStringList("settings.generator.hologram.boosted-hologram");
-    final private Plugin plugin;
     private int boostTimeLine;
 
-    public DecentHologramsHook(final Plugin plugin) {
-        this.plugin = plugin;
+    public DecentHologramsHook() {
         for (int i = 0; i < boostedHologramTexts.size(); i++) {
             if (!boostedHologramTexts.get(i).contains("%generator_boost_time%")) continue;
             boostTimeLine = i;
@@ -35,6 +31,7 @@ public class DecentHologramsHook implements HologramHook {
     }
 
     public void loadHologram(final Generator generator) {
+        if (!generator.isHologramEnabled()) return;
         final Location location = generator.getGeneratorLocation().clone();
         Hologram hologram;
         HologramPage hologramPage;
@@ -59,6 +56,7 @@ public class DecentHologramsHook implements HologramHook {
     }
 
     public void reloadHologram(final Generator generator) {
+        if (!generator.isHologramEnabled()) return;
         if (generator.hasHologram()) deleteHologram(generator);
         generator.setHologram(null);
         loadHologram(generator);
@@ -73,6 +71,7 @@ public class DecentHologramsHook implements HologramHook {
     }
 
     public void reloadBoostLine(final Generator generator) {
+        if (!generator.isHologramEnabled()) return;
         final Hologram hologram = (Hologram) generator.getHologram();
         final HologramPage hologramPage = hologram.getPage(0);
         final HologramLine hologramLine = hologramPage.getLine(boostTimeLine);

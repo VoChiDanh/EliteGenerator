@@ -10,6 +10,7 @@ import me.kafein.elitegenerator.generator.feature.FeatureManager;
 import me.kafein.elitegenerator.generator.feature.auto.autoBreak.AutoBreakManager;
 import me.kafein.elitegenerator.generator.feature.auto.autoChest.AutoChestManager;
 import me.kafein.elitegenerator.generator.feature.permission.MemberPermission;
+import me.kafein.elitegenerator.hook.hologram.HologramHook;
 import me.kafein.elitegenerator.menu.Menu;
 import me.kafein.elitegenerator.menu.MenuManager;
 import me.kafein.elitegenerator.menu.event.MenuClickEvent;
@@ -31,6 +32,7 @@ public class SettingsMenu extends Menu {
     final private FileManager fileManager = EliteGenerator.getInstance().getFileManager();
     final private GeneratorManager generatorManager = EliteGenerator.getInstance().getGeneratorManager();
     final private FeatureManager featureManager = generatorManager.getFeatureManager();
+    final private HologramHook hologramHook = EliteGenerator.getInstance().getHookManager().getHologramHook();
     final private AutoChestManager autoChestManager = featureManager.getAutoChestManager();
     final private AutoBreakManager autoBreakManager = featureManager.getAutoBreakManager();
 
@@ -145,11 +147,26 @@ public class SettingsMenu extends Menu {
 
             if (generator.isAutoChestEnabled()) {
                 generator.clearAutoChest();
-            }else {
+            } else {
                 generator.clearAutoChest();
                 autoChestManager.addAutoChestPlayer(player.getUniqueId(), generatorUUID);
             }
             player.closeInventory();
+
+        } else if (e.getSlot() == fileConfig.getInt("menu.items.hologram.slot")) {
+
+            if (!generator.containsMemberPermission(player.getUniqueId(), MemberPermission.CHANGE_SETTINGS)) return;
+
+            if (generator.isHologramEnabled()) {
+                generator.setHologramEnabled(false);
+                hologramHook.deleteHologram(generator);
+            }
+            else {
+                generator.setHologramEnabled(true);
+                hologramHook.loadHologram(generator);
+            }
+
+            openMenu(player, generator);
 
         } else if (e.getSlot() == fileConfig.getInt("menu.items.delete.slot")) {
 

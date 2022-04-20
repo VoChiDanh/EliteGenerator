@@ -33,6 +33,7 @@ public class HolographicDisplaysHook implements HologramHook {
     }
 
     public void loadHologram(final Generator generator) {
+        if (!generator.isHologramEnabled()) return;
         final Location location = generator.getGeneratorLocation().clone();
         Hologram hologram;
         if (generator.hasBoost()) {
@@ -48,6 +49,7 @@ public class HolographicDisplaysHook implements HologramHook {
     }
 
     public void reloadHologram(final Generator generator) {
+        if (!generator.isHologramEnabled()) return;
         if (generator.hasHologram()) ((Hologram) generator.getHologram()).delete();
         generator.setHologram(null);
         loadHologram(generator);
@@ -59,6 +61,7 @@ public class HolographicDisplaysHook implements HologramHook {
     }
 
     public void reloadBoostLine(final Generator generator) {
+        if (!generator.isHologramEnabled()) return;
         final TextLine textLine = (TextLine) ((Hologram) generator.getHologram()).getLine(boostTimeLine);
         textLine.setText(PlaceHolder.replace(boostedHologramTexts.get(boostTimeLine), generator));
     }

@@ -1,5 +1,7 @@
 package me.kafein.elitegenerator.generator;
 
+import lombok.Getter;
+import lombok.Setter;
 import me.kafein.elitegenerator.generator.feature.auto.autoChest.AutoChest;
 import me.kafein.elitegenerator.generator.feature.boost.Boost;
 import me.kafein.elitegenerator.generator.feature.permission.MemberPermission;
@@ -10,12 +12,14 @@ import org.bukkit.entity.Player;
 import javax.annotation.Nullable;
 import java.util.*;
 
+@Getter @Setter
 public class Generator {
 
     private Map<UUID, GeneratorMember> generatorMembers = new HashMap<>();
     private UUID ownerUUID;
 
     private Object hologram;
+    private boolean hologramEnabled;
 
     private Boost boost;
 
@@ -105,24 +109,6 @@ public class Generator {
         return generatorMembers.size();
     }
 
-    @Nullable
-    public Player getOwner() {
-        return Bukkit.getPlayer(ownerUUID);
-    }
-
-    public UUID getOwnerUUID() {
-        return ownerUUID;
-    }
-
-    @Nullable
-    public Boost getBoost() {
-        return boost;
-    }
-
-    public void setBoost(Boost boost) {
-        this.boost = boost;
-    }
-
     public void clearBoost() {
         boost = null;
     }
@@ -143,64 +129,8 @@ public class Generator {
         return hologram != null;
     }
 
-    public boolean isAutoBreakBuyed() {
-        return autoBreakBuyed;
-    }
-
-    public boolean isAutoPickupBuyed() {
-        return autoPickupBuyed;
-    }
-
-    public boolean isAutoSmeltBuyed() {
-        return autoSmeltBuyed;
-    }
-
-    public boolean isAutoChestBuyed() {
-        return autoChestBuyed;
-    }
-
-    public void setAutoBreakBuyed(boolean autoBreakBuyed) {
-        this.autoBreakBuyed = autoBreakBuyed;
-    }
-
-    public void setAutoPickupBuyed(boolean autoPickupBuyed) {
-        this.autoPickupBuyed = autoPickupBuyed;
-    }
-
-    public void setAutoSmeltBuyed(boolean autoSmeltBuyed) {
-        this.autoSmeltBuyed = autoSmeltBuyed;
-    }
-
-    public void setAutoChestBuyed(boolean autoChestBuyed) {
-        this.autoChestBuyed = autoChestBuyed;
-    }
-
-    public boolean isAutoBreakEnabled() {
-        return autoBreakEnabled;
-    }
-
-    public boolean isAutoPickupEnabled() {
-        return autoPickupEnabled;
-    }
-
-    public boolean isAutoSmeltEnabled() {
-        return autoSmeltEnabled;
-    }
-
     public boolean isAutoChestEnabled() {
         return autoChest != null;
-    }
-
-    public void setAutoBreakEnabled(boolean autoBreakEnabled) {
-        this.autoBreakEnabled = autoBreakEnabled;
-    }
-
-    public void setAutoPickupEnabled(boolean autoPickupEnabled) {
-        this.autoPickupEnabled = autoPickupEnabled;
-    }
-
-    public void setAutoSmeltEnabled(boolean autoSmeltEnabled) {
-        this.autoSmeltEnabled = autoSmeltEnabled;
     }
 
     public void setAutoChest(AutoChest autoChest) {
@@ -216,40 +146,8 @@ public class Generator {
         return autoChest;
     }
 
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     public void addLevel(int var) {
         level += var;
-    }
-
-    public Location getGeneratorLocation() {
-        return generatorLocation;
-    }
-
-    public String getGeneratorName() {
-        return generatorName;
-    }
-
-    public UUID getGeneratorUUID() {
-        return generatorUUID;
-    }
-
-    public Location getIslandLocation() {
-        return islandLocation;
     }
 
 }

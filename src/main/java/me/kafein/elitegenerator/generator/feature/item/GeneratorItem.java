@@ -2,7 +2,7 @@ package me.kafein.elitegenerator.generator.feature.item;
 
 import me.kafein.elitegenerator.config.FileConfig;
 import me.kafein.elitegenerator.util.item.ItemBuilder;
-import org.bukkit.Material;
+import me.kafein.elitegenerator.util.placeholder.PlaceHolder;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
@@ -44,10 +44,10 @@ public class GeneratorItem {
     private String replacer(final String var, final int level, final boolean autoBreak, final boolean autoPickup, final boolean autoSmelt, final boolean autoChest) {
         return var
                 .replace("%level%", Integer.toString(level))
-                .replace("%autoBreak%", Boolean.toString(autoBreak))
-                .replace("%autoPickup%", Boolean.toString(autoPickup))
-                .replace("%autoSmelt%", Boolean.toString(autoSmelt))
-                .replace("%autoChest%", Boolean.toString(autoChest));
+                .replace("%autoBreak%", autoBreak ? PlaceHolder.ENABLED : PlaceHolder.DISABLED)
+                .replace("%autoPickup%", autoPickup ? PlaceHolder.ENABLED : PlaceHolder.DISABLED)
+                .replace("%autoSmelt%", autoSmelt ? PlaceHolder.ENABLED : PlaceHolder.DISABLED)
+                .replace("%autoChest%", autoChest ? PlaceHolder.ENABLED : PlaceHolder.DISABLED);
     }
 
 }

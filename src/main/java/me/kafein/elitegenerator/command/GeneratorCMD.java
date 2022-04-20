@@ -1,9 +1,13 @@
 package me.kafein.elitegenerator.command;
 
+import com.iridium.iridiumcore.utils.Placeholder;
 import me.kafein.elitegenerator.EliteGenerator;
 import me.kafein.elitegenerator.config.FileManager;
+import me.kafein.elitegenerator.generator.Generator;
 import me.kafein.elitegenerator.generator.GeneratorManager;
 import me.kafein.elitegenerator.menu.MenuManager;
+import me.kafein.elitegenerator.util.location.LocationSerializer;
+import me.kafein.elitegenerator.util.placeholder.PlaceHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -60,9 +64,9 @@ public class GeneratorCMD implements TabExecutor {
         }else if (args[0].equalsIgnoreCase("reload")) {
 
             fileManager.loadFiles();
+            PlaceHolder.reload();
             generatorManager.reloadGeneratorItem();
             generatorManager.reloadFirstBlockMaterial();
-            menuManager.reload();
 
             sender.sendMessage(fileManager.getMessage("reload"));
 

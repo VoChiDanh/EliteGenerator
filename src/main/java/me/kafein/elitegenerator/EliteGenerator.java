@@ -7,14 +7,12 @@ import me.kafein.elitegenerator.generator.GeneratorManager;
 import me.kafein.elitegenerator.generator.feature.auto.autoPickup.listener.AutoPickupListener;
 import me.kafein.elitegenerator.hook.HookManager;
 import me.kafein.elitegenerator.hook.VaultHook;
-import me.kafein.elitegenerator.listener.BlockListener;
-import me.kafein.elitegenerator.listener.GeneratorBreakListener;
-import me.kafein.elitegenerator.listener.InteractListener;
-import me.kafein.elitegenerator.listener.PlayerListener;
+import me.kafein.elitegenerator.listener.*;
 import me.kafein.elitegenerator.menu.MenuManager;
 import me.kafein.elitegenerator.menu.listener.InventoryListener;
 import me.kafein.elitegenerator.storage.StorageManager;
 import me.kafein.elitegenerator.user.UserManager;
+import me.kafein.elitegenerator.util.placeholder.PlaceHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -47,7 +45,7 @@ public final class EliteGenerator extends JavaPlugin {
         fileManager = new FileManager(this);
         hookManager = new HookManager(this);
 
-        if (!VaultHook.setupEconomy(this, pluginManager)) {
+        if (!VaultHook.setup(this, pluginManager)) {
             getLogger().warning("Vault is not exists!");
             pluginManager.disablePlugin(this);
             return;
@@ -61,6 +59,7 @@ public final class EliteGenerator extends JavaPlugin {
             return;
         }
 
+        PlaceHolder.reload();
         storageManager = new StorageManager(this);
         generatorManager = new GeneratorManager(this);
         userManager = new UserManager();
@@ -93,6 +92,7 @@ public final class EliteGenerator extends JavaPlugin {
         pluginManager.registerEvents(new GeneratorBreakListener(this), this);
         pluginManager.registerEvents(new InteractListener(), this);
         pluginManager.registerEvents(new AutoPickupListener(), this);
+        pluginManager.registerEvents(new ExplodeListener(), this);
 
     }
 

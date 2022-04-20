@@ -27,11 +27,18 @@ language:
     generatorPlaced: "%prefix% &eGenerator placed."
     generatorDeleted: "%prefix% &eGenerator deleted and generator item given to your."
 
-    generatorIslandLimit: "%prefix% &7Island generator limit is &e%max_generator_amount%&7."
+    generatorIslandLimit: "%prefix% &7The generator limit you can put on your island for the &e%max_generator_amount% &7permission is &e%group%&7."
     thisWorldIsNotIslandWorld: "%prefix% &eYou can just put the generator on your island."
     thisIslandIsNotYour: "%prefix% &eYou must be an island owner for this."
 
     generatorIsNotUpgraded: "%prefix% &7Generator could not upgrade because generator requirements could not be met."
+
+    placeHolder:
+      generatorName: "&e%owner%'s Generator"
+      buyed: "Buyed"
+      notbuyed: "Not Buyed"
+      enabled: "Enabled"
+      disabled: "Disabled"
 
     upgrade:
 

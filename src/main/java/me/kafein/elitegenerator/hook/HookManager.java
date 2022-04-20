@@ -34,7 +34,7 @@ public class HookManager {
         else if (pluginManager.isPluginEnabled("FabledSkyBlock")) skyBlockHook = new FabledSkyBlockHook();
 
         if (pluginManager.isPluginEnabled("HolographicDisplays")) hologramHook = new HolographicDisplaysHook(plugin);
-        else if (pluginManager.isPluginEnabled("DecentHolograms")) hologramHook = new DecentHologramsHook(plugin);
+        else if (pluginManager.isPluginEnabled("DecentHolograms")) hologramHook = new DecentHologramsHook();
 
     }
 

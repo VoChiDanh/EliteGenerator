@@ -6,10 +6,8 @@ import me.kafein.elitegenerator.hook.skyblock.SkyBlockHook;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import world.bentobox.bentobox.BentoBox;
-import world.bentobox.bentobox.api.addons.Addon;
 import world.bentobox.bentobox.api.events.island.IslandDeleteEvent;
 import world.bentobox.bentobox.api.events.island.IslandResetEvent;
 import world.bentobox.bentobox.api.events.team.TeamJoinEvent;
@@ -27,18 +25,18 @@ import java.util.UUID;
 
 public class BSkyBlockHook extends SkyBlockHook {
 
+    final private String[] islandWorlds = {"bskyblock_world", "acidisland_world", "oneblock_world", "caveblock-world", "boxed_world"};
     final private PlayersManager playersManager = BentoBox.getInstance().getPlayers();
     final private IslandsManager islandsManager = BentoBox.getInstance().getIslandsManager();
     final private AddonsManager addonsManager = BentoBox.getInstance().getAddonsManager();
 
     @Override
     public World getIslandWorld() {
-        String worldName = null;
-        for (Addon addon : addonsManager.getEnabledAddons()) {
-            FileConfiguration config = addon.getConfig();
-            if (config.contains("world.world-name")) worldName = config.getString("world.world-name");
+        for (String worldName : islandWorlds) {
+            World world = Bukkit.getWorld(worldName);
+            if (world != null) return world;
         }
-        return Bukkit.getWorld(worldName);
+        return null;
     }
 
     @Override

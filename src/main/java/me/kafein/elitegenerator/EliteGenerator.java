@@ -49,12 +49,12 @@ public final class EliteGenerator extends JavaPlugin {
             getLogger().warning("Vault is not exists!");
             pluginManager.disablePlugin(this);
             return;
-        } else if (!hookManager.hasHologramHook()) {
-            getLogger().warning("Hologram API is not exists!");
-            pluginManager.disablePlugin(this);
-            return;
         } else if (!hookManager.hasSkyBlockHook()) {
             getLogger().warning("SkyBlock API is not exists!");
+            pluginManager.disablePlugin(this);
+            return;
+        }else if (!hookManager.hasHologramHook()) {
+            getLogger().warning("Hologram API is not exists!");
             pluginManager.disablePlugin(this);
             return;
         }

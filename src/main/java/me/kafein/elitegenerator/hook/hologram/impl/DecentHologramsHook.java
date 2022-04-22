@@ -17,7 +17,6 @@ import java.util.List;
 public class DecentHologramsHook implements HologramHook {
 
     final private FileConfig fileConfig = EliteGenerator.getInstance().getFileManager().getFile(FileManager.ConfigFile.settings);
-
     final private List<String> classicHologramTexts = fileConfig.getStringList("settings.generator.hologram.classic-hologram");
     final private List<String> boostedHologramTexts = fileConfig.getStringList("settings.generator.hologram.boosted-hologram");
     private int boostTimeLine;

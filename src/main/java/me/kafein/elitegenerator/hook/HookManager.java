@@ -27,16 +27,14 @@ public class HookManager {
 
         final PluginManager pluginManager = Bukkit.getPluginManager();
 
+        if (pluginManager.isPluginEnabled("HolographicDisplays")) hologramHook = new HolographicDisplaysHook(plugin);
+        else if (pluginManager.isPluginEnabled("DecentHolograms")) hologramHook = new DecentHologramsHook();
+
         if (pluginManager.isPluginEnabled("ASkyBlock")) skyBlockHook = new ASkyBlockHook();
         else if (pluginManager.isPluginEnabled("BentoBox")) skyBlockHook = new BSkyBlockHook();
         else if (pluginManager.isPluginEnabled("SuperiorSkyblock2")) skyBlockHook = new SuperiorSkyBlockHook();
         else if (pluginManager.isPluginEnabled("IridiumSkyblock")) skyBlockHook = new IridiumSkyBlockHook();
         else if (pluginManager.isPluginEnabled("FabledSkyBlock")) skyBlockHook = new FabledSkyBlockHook();
-
-        if (skyBlockHook.getIslandWorld() == null) throw new NullPointerException("SkyBlockWorld is not found!");
-
-        if (pluginManager.isPluginEnabled("HolographicDisplays")) hologramHook = new HolographicDisplaysHook(plugin);
-        else if (pluginManager.isPluginEnabled("DecentHolograms")) hologramHook = new DecentHologramsHook();
 
     }
 

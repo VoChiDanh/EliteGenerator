@@ -2,6 +2,7 @@ package me.kafein.elitegenerator.generator.feature.requirement.impl;
 
 import me.kafein.elitegenerator.generator.feature.requirement.Requirement;
 import me.kafein.elitegenerator.generator.feature.requirement.RequirementType;
+import me.kafein.elitegenerator.util.Experience;
 import org.bukkit.entity.Player;
 
 public class ExpRequirement extends Requirement {
@@ -13,12 +14,12 @@ public class ExpRequirement extends Requirement {
     @Override
     public void apply(Object target) {
         final Player player = (Player) target;
-        player.setTotalExperience(player.getTotalExperience() - getNumberRequirement().intValue());
+        Experience.changeExp(player, -getNumberRequirement().intValue());
     }
 
     @Override
     public boolean has(Object target) {
-        return ((Player) target).getTotalExperience() >= getNumberRequirement().intValue();
+        return Experience.getExp((Player) target) >= getNumberRequirement().intValue();
     }
 
     @Override

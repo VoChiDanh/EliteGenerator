@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.kafein</groupId>
-    <artifactId>EliteGgenerator</artifactId>
-    <version>1.0.4</version>
+    <artifactId>EliteGenerator</artifactId>
+    <version>1.0.4.1</version>
     <packaging>jar</packaging>
 
     <name>EliteGenerator</name>

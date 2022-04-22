@@ -21,7 +21,7 @@ public class SuperiorSkyBlockHook extends SkyBlockHook {
 
     final private PlayersManager playersManager = SuperiorSkyblockAPI.getSuperiorSkyblock().getPlayers();
     final private SettingsManager settingsManager = SuperiorSkyblockAPI.getSuperiorSkyblock().getSettings();
-    final String worldName = settingsManager.getWorlds().getWorldName();
+    final private String worldName = settingsManager.getWorlds().getWorldName();
 
     @Override
     public World getIslandWorld() {
@@ -36,7 +36,7 @@ public class SuperiorSkyBlockHook extends SkyBlockHook {
     @Override
     public Location getIslandCenterLocation(UUID playerUUID) {
         final Island island = playersManager.getSuperiorPlayer(playerUUID).getIsland();
-        return island.getCenter(World.Environment.NORMAL);
+        return island.getCenter(World.Environment.NORMAL).getBlock().getLocation();
     }
 
     @Override
@@ -55,15 +55,14 @@ public class SuperiorSkyBlockHook extends SkyBlockHook {
     public List<UUID> getIslandMembers(UUID playerUUID) {
         final Island island = playersManager.getSuperiorPlayer(playerUUID).getIsland();
         final List<UUID> memberList = new ArrayList<>();
-        memberList.add(playerUUID);
-        island.getIslandMembers().forEach(member -> memberList.add(member.getUniqueId()));
+        island.getIslandMembers(true).forEach(member -> memberList.add(member.getUniqueId()));
         return memberList;
     }
 
     @EventHandler
     public void onDelete(final IslandDisbandEvent e) {
 
-        final Location location = e.getIsland().getCenter(World.Environment.NORMAL);
+        final Location location = e.getIsland().getCenter(World.Environment.NORMAL).getBlock().getLocation();
 
         if (!getGeneratorManager().containsGeneratorIslandLocation(location)) return;
 
@@ -78,7 +77,7 @@ public class SuperiorSkyBlockHook extends SkyBlockHook {
     @EventHandler
     public void onChangeOwner(final IslandTransferEvent e) {
 
-        final Location location = e.getIsland().getCenter(World.Environment.NORMAL);
+        final Location location = e.getIsland().getCenter(World.Environment.NORMAL).getBlock().getLocation();
 
         if (!getGeneratorManager().containsGeneratorIslandLocation(location)) return;
 
@@ -96,7 +95,7 @@ public class SuperiorSkyBlockHook extends SkyBlockHook {
 
         final UUID playerUUID = e.getPlayer().getUniqueId();
 
-        final Location location = e.getIsland().getCenter(World.Environment.NORMAL);
+        final Location location = e.getIsland().getCenter(World.Environment.NORMAL).getBlock().getLocation();
 
         if (!getGeneratorManager().containsGeneratorIslandLocation(location)) return;
 
@@ -115,7 +114,7 @@ public class SuperiorSkyBlockHook extends SkyBlockHook {
 
         final UUID playerUUID = e.getPlayer().getUniqueId();
 
-        final Location location = e.getIsland().getCenter(World.Environment.NORMAL);
+        final Location location = e.getIsland().getCenter(World.Environment.NORMAL).getBlock().getLocation();
 
         if (!getGeneratorManager().containsGeneratorIslandLocation(location)) return;
 
@@ -132,9 +131,9 @@ public class SuperiorSkyBlockHook extends SkyBlockHook {
     @EventHandler
     public void onKick(final IslandKickEvent e) {
 
-        final UUID playerUUID = e.getPlayer().getUniqueId();
+        final UUID playerUUID = e.getTarget().getUniqueId();
 
-        final Location location = e.getIsland().getCenter(World.Environment.NORMAL);
+        final Location location = e.getIsland().getCenter(World.Environment.NORMAL).getBlock().getLocation();
 
         if (!getGeneratorManager().containsGeneratorIslandLocation(location)) return;
 

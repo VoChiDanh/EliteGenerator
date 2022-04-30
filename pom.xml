@@ -6,7 +6,7 @@
 
     <groupId>me.kafein</groupId>
     <artifactId>EliteGenerator</artifactId>
-    <version>1.0.4.2</version>
+    <version>1.0.5</version>
     <packaging>jar</packaging>
 
     <name>EliteGenerato</name>

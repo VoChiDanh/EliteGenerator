@@ -24,6 +24,16 @@ settings:
       default: 3
       vip: 5
 
+    #Set the worlds where they can place the generator
+    #%skyblock-main-world% is the main world of the island
+    whitelist-worlds:
+      - "%skyblock-main-world%"
+
+    default-member-permissions:
+      BREAK_GENERATOR: true
+      OPEN_SETTINGS: false
+      CHANGE_SETTINGS: false
+
     generator-first-material: "REDSTONE_ORE"
 
     generator-item:

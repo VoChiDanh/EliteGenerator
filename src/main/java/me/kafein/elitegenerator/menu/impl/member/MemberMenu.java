@@ -13,6 +13,7 @@ import me.kafein.elitegenerator.menu.event.MenuClickEvent;
 import me.kafein.elitegenerator.menu.event.MenuCloseEvent;
 import me.kafein.elitegenerator.menu.event.MenuOpenEvent;
 import me.kafein.elitegenerator.util.item.ItemBuilder;
+import me.kafein.elitegenerator.util.placeholder.PlaceHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -208,9 +209,9 @@ public class MemberMenu extends Menu {
     private String replace(final String text, final Generator generator, final UUID memberUUID) {
 
         return text
-                .replace("%generator_break_permission%", Boolean.toString(generator.containsMemberPermission(memberUUID, MemberPermission.BREAK_GENERATOR)))
-                .replace("%generator_open_permission%", Boolean.toString(generator.containsMemberPermission(memberUUID, MemberPermission.OPEN_SETTINGS)))
-                .replace("%generator_change_permission%", Boolean.toString(generator.containsMemberPermission(memberUUID, MemberPermission.CHANGE_SETTINGS)));
+                .replace("%generator_break_permission%", generator.containsMemberPermission(memberUUID, MemberPermission.BREAK_GENERATOR) ? PlaceHolder.ENABLED : PlaceHolder.DISABLED)
+                .replace("%generator_open_permission%", generator.containsMemberPermission(memberUUID, MemberPermission.OPEN_SETTINGS) ? PlaceHolder.ENABLED : PlaceHolder.DISABLED)
+                .replace("%generator_change_permission%", generator.containsMemberPermission(memberUUID, MemberPermission.CHANGE_SETTINGS) ? PlaceHolder.ENABLED : PlaceHolder.DISABLED);
 
     }
 

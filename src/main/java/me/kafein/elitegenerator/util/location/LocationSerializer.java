@@ -5,8 +5,8 @@ import org.bukkit.Location;
 
 public class LocationSerializer {
 
-    public static String serialize(final Location location) {
-        return location.getWorld().getName() + ": "
+    public static String serialize(final Location location, boolean withWorld) {
+        return (withWorld ? location.getWorld().getName() + ": " : "")
                 + location.getBlockX() + ", "
                 + location.getBlockY() + ", "
                 + location.getBlockZ();

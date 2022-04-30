@@ -1,6 +1,7 @@
 package me.kafein.elitegenerator.generator;
 
 import me.kafein.elitegenerator.EliteGenerator;
+import me.kafein.elitegenerator.config.FileConfig;
 import me.kafein.elitegenerator.config.FileManager;
 import me.kafein.elitegenerator.event.GeneratorDeleteEvent;
 import me.kafein.elitegenerator.generator.feature.FeatureManager;
@@ -16,7 +17,6 @@ import me.kafein.elitegenerator.storage.Storage;
 import me.kafein.elitegenerator.user.User;
 import me.kafein.elitegenerator.user.UserManager;
 import net.milkbowl.vault.permission.Permission;
-import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -35,18 +35,28 @@ public class GeneratorManager {
     final private SkyBlockHook skyBlockHook = EliteGenerator.getInstance().getHookManager().getSkyBlockHook();
     final private Permission permission = VaultHook.getPermission();
     final private FeatureManager featureManager;
+    private UserManager userManager;
+
     final private Map<UUID, Generator> generators = new HashMap<>();
     final private Map<Location, UUID> generatorLocations = new HashMap<>();
     final private Map<Location, List<UUID>> generatorIslands = new HashMap<>();
-    final private Plugin plugin;
-    private UserManager userManager;
+
     private GeneratorItem generatorItem = new GeneratorItem(fileManager.getFile(FileManager.ConfigFile.settings));
     private Material firstBlockMaterial = Material.getMaterial(fileManager.getFile(FileManager.ConfigFile.settings).getString("settings.generator.generator-first-material"));
+
     private boolean boostRunnableStarted;
+
+    final private Plugin plugin;
 
     public GeneratorManager(final Plugin plugin) {
         this.plugin = plugin;
         featureManager = new FeatureManager(plugin);
+        FileConfig fileConfig = fileManager.getFile(FileManager.ConfigFile.settings);
+        fileConfig.getStringList("settings.generator.default-member-permissions").forEach(perm -> {
+            boolean value = fileConfig.getBoolean("settings.generator.default-member-permissions." + perm);
+            MemberPermission memberPermission = MemberPermission.valueOf(perm);
+            memberPermission.setValue(value);
+        });
     }
 
     public CompletableFuture<Void> saveGenerators() {
@@ -66,12 +76,14 @@ public class GeneratorManager {
         final UUID ownerUUID = owner.getUniqueId();
         final UUID generatorUUID = UUID.randomUUID();
 
-        if (!location.getWorld().getName().equals(skyBlockHook.getIslandWorld().getName())) {
-
-            owner.sendMessage(fileManager.getMessage("generator.thisWorldIsNotIslandWorld"));
-            return false;
-
+        String worldName = location.getWorld().getName();
+        List<String> worlds = fileManager.getFile(FileManager.ConfigFile.settings).getStringList("settings.generator.whitelist-worlds");
+        boolean verifiedWorld = false;
+        for (String world : worlds) {
+            if (world.equalsIgnoreCase("%skyblock-main-world%")) world = skyBlockHook.getIslandWorld().getName();
+            if (world.equalsIgnoreCase(worldName)) verifiedWorld = true;
         }
+        if (!verifiedWorld) return false;
 
         if (!skyBlockHook.hasIsland(ownerUUID)
                 || !skyBlockHook.getIslandOwner(ownerUUID).equals(ownerUUID)) {

@@ -17,6 +17,9 @@ public class GeneratorMember {
 
     public GeneratorMember(final UUID memberUUID) {
         this.memberUUID = memberUUID;
+        for (MemberPermission memberPermission : MemberPermission.values()) {
+            if (memberPermission.getValue()) memberPermissions.add(memberPermission);
+        }
     }
 
     public boolean containsPermission(final MemberPermission memberPermission) {

@@ -151,8 +151,8 @@ public class JsonStorage implements Storage {
         jsonObject.add("generatorUUID", generator.getGeneratorUUID().toString());
         jsonObject.add("generatorName", generator.getGeneratorName());
         jsonObject.add("createDate", generator.getCreateDate());
-        jsonObject.add("generatorLocation", LocationSerializer.serialize(generator.getGeneratorLocation()));
-        jsonObject.add("islandLocation", LocationSerializer.serialize(generator.getIslandLocation()));
+        jsonObject.add("generatorLocation", LocationSerializer.serialize(generator.getGeneratorLocation(), true));
+        jsonObject.add("islandLocation", LocationSerializer.serialize(generator.getIslandLocation(), true));
         jsonObject.add("ownerUUID", generator.getOwnerUUID().toString());
 
         jsonObject.add("level", generator.getLevel());
@@ -165,7 +165,7 @@ public class JsonStorage implements Storage {
         jsonObject.add("autoSmeltBuyed", generator.isAutoSmeltBuyed());
         jsonObject.add("autoSmeltEnabled", generator.isAutoSmeltEnabled());
         jsonObject.add("autoChestBuyed", generator.isAutoChestBuyed());
-        jsonObject.add("autoChestLocation", generator.isAutoChestEnabled() ? LocationSerializer.serialize(generator.getAutoChest().getChestLocation()) : "none");
+        jsonObject.add("autoChestLocation", generator.isAutoChestEnabled() ? LocationSerializer.serialize(generator.getAutoChest().getChestLocation(), true) : "none");
 
         jsonObject.addObject("members", generator.getGeneratorMembersMap());
 

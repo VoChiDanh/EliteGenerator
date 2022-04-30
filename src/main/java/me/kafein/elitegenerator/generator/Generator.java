@@ -23,14 +23,10 @@ public class Generator {
 
     private Boost boost;
 
-    private boolean autoBreakBuyed;
-    private boolean autoPickupBuyed;
-    private boolean autoSmeltBuyed;
+    private boolean autoBreakBuyed, autoBreakEnabled;
+    private boolean autoPickupBuyed, autoPickupEnabled;
+    private boolean autoSmeltBuyed, autoSmeltEnabled;
     private boolean autoChestBuyed;
-
-    private boolean autoBreakEnabled;
-    private boolean autoPickupEnabled;
-    private boolean autoSmeltEnabled;
     private AutoChest autoChest;
 
     private String createDate;

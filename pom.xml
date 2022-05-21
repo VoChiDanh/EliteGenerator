@@ -6,10 +6,10 @@
 
     <groupId>me.kafein</groupId>
     <artifactId>EliteGenerator</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <packaging>jar</packaging>
 
-    <name>EliteGenerato</name>
+    <name>EliteGenerator</name>
 
     <description>Elite Generator Plugin.</description>
     <properties>

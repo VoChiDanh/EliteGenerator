@@ -1,12 +1,8 @@
 package me.kafein.elitegenerator.command;
 
-import com.iridium.iridiumcore.utils.Placeholder;
 import me.kafein.elitegenerator.EliteGenerator;
 import me.kafein.elitegenerator.config.FileManager;
-import me.kafein.elitegenerator.generator.Generator;
 import me.kafein.elitegenerator.generator.GeneratorManager;
-import me.kafein.elitegenerator.menu.MenuManager;
-import me.kafein.elitegenerator.util.location.LocationSerializer;
 import me.kafein.elitegenerator.util.placeholder.PlaceHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -23,7 +19,6 @@ public class GeneratorCMD implements TabExecutor {
 
     final private FileManager fileManager = EliteGenerator.getInstance().getFileManager();
     final private GeneratorManager generatorManager = EliteGenerator.getInstance().getGeneratorManager();
-    final private MenuManager menuManager = EliteGenerator.getInstance().getMenuManager();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

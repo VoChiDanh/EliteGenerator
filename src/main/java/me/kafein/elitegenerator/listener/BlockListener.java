@@ -19,7 +19,7 @@ public class BlockListener implements Listener {
     final private GeneratorManager generatorManager = EliteGenerator.getInstance().getGeneratorManager();
 
     final private PluginManager pluginManager = Bukkit.getPluginManager();
-
+    
     @EventHandler (priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBreak(final BlockBreakEvent e) {
 

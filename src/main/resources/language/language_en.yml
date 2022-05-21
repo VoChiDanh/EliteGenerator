@@ -32,6 +32,7 @@ language:
     thisIslandIsNotYour: "%prefix% &eYou must be an island owner for this."
 
     generatorIsNotUpgraded: "%prefix% &7Generator could not upgrade because generator requirements could not be met."
+    generatorIsNotDeleted: "%prefix% &7Generator could not delete."
 
     placeHolder:
       generatorName: "&e%owner%'s Generator"

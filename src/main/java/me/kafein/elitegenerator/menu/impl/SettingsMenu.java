@@ -9,6 +9,7 @@ import me.kafein.elitegenerator.generator.GeneratorManager;
 import me.kafein.elitegenerator.generator.feature.FeatureManager;
 import me.kafein.elitegenerator.generator.feature.auto.autoBreak.AutoBreakManager;
 import me.kafein.elitegenerator.generator.feature.auto.autoChest.AutoChestManager;
+import me.kafein.elitegenerator.generator.feature.condition.GeneratorDeleteCondition;
 import me.kafein.elitegenerator.generator.feature.permission.MemberPermission;
 import me.kafein.elitegenerator.hook.hologram.HologramHook;
 import me.kafein.elitegenerator.menu.Menu;
@@ -171,6 +172,10 @@ public class SettingsMenu extends Menu {
         } else if (e.getSlot() == fileConfig.getInt("menu.items.delete.slot")) {
 
             if (!player.getUniqueId().equals(generator.getOwnerUUID())) return;
+            if (!GeneratorDeleteCondition.check(player, generator)) {
+                player.sendMessage(fileManager.getMessage("generator.generatorIsNotDeleted"));
+                return;
+            }
 
             player.closeInventory();
 

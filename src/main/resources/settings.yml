@@ -34,6 +34,10 @@ settings:
       OPEN_SETTINGS: false
       CHANGE_SETTINGS: false
 
+    generator-delete-conditions:
+      - "level: 2"
+      - "upgrade: auto_pickup"
+
     generator-first-material: "REDSTONE_ORE"
 
     generator-item:

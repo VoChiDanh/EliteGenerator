@@ -34,7 +34,7 @@ public abstract class SkyBlockHook implements Listener {
     public abstract long getIslandLevel(final UUID playerUUID);
 
     @Nullable
-    public abstract UUID getIslandOwner(final UUID playerUUID);
+    public abstract UUID getIslandOwner(final Location location);
 
     public abstract List<UUID> getIslandMembers(final UUID playerUUID);
 

@@ -14,6 +14,7 @@ import world.bentobox.bentobox.api.events.team.TeamJoinEvent;
 import world.bentobox.bentobox.api.events.team.TeamKickEvent;
 import world.bentobox.bentobox.api.events.team.TeamLeaveEvent;
 import world.bentobox.bentobox.api.events.team.TeamSetownerEvent;
+import world.bentobox.bentobox.database.objects.Island;
 import world.bentobox.bentobox.managers.AddonsManager;
 import world.bentobox.bentobox.managers.IslandsManager;
 import world.bentobox.bentobox.managers.PlayersManager;
@@ -21,6 +22,7 @@ import world.bentobox.level.Level;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class BSkyBlockHook extends SkyBlockHook {
@@ -55,8 +57,9 @@ public class BSkyBlockHook extends SkyBlockHook {
     }
 
     @Override
-    public UUID getIslandOwner(UUID playerUUID) {
-        return islandsManager.getIsland(getIslandWorld(), playersManager.getUser(playerUUID)).getOwner();
+    public UUID getIslandOwner(Location location) {
+        Optional<Island> island = islandsManager.getIslandAt(location);
+        return island.map(Island::getOwner).orElse(null);
     }
 
     @Override

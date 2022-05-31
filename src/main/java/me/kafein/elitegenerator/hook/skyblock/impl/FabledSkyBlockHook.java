@@ -6,6 +6,7 @@ import com.songoda.skyblock.api.event.island.IslandKickEvent;
 import com.songoda.skyblock.api.event.island.IslandOwnershipTransferEvent;
 import com.songoda.skyblock.api.event.player.PlayerIslandJoinEvent;
 import com.songoda.skyblock.api.event.player.PlayerIslandLeaveEvent;
+import com.songoda.skyblock.island.Island;
 import com.songoda.skyblock.island.IslandEnvironment;
 import com.songoda.skyblock.island.IslandManager;
 import com.songoda.skyblock.island.IslandWorld;
@@ -48,8 +49,10 @@ public class FabledSkyBlockHook extends SkyBlockHook {
     }
 
     @Override
-    public UUID getIslandOwner(UUID playerUUID) {
-        return islandManager.getIsland(Bukkit.getOfflinePlayer(playerUUID)).getOwnerUUID();
+    public UUID getIslandOwner(Location location) {
+        Island island = islandManager.getIslandAtLocation(location);
+        if (island == null) return null;
+        return island.getOwnerUUID();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package me.kafein.elitegenerator.hook.skyblock.impl;
 
 import com.wasteofplastic.askyblock.ASkyBlockAPI;
+import com.wasteofplastic.askyblock.Island;
 import com.wasteofplastic.askyblock.events.*;
 import me.kafein.elitegenerator.generator.Generator;
 import me.kafein.elitegenerator.generator.GeneratorMember;
@@ -38,8 +39,10 @@ public class ASkyBlockHook extends SkyBlockHook {
     }
 
     @Override
-    public UUID getIslandOwner(UUID playerUUID) {
-        return aSkyBlockAPI.getIslandOwnedBy(playerUUID).getOwner();
+    public UUID getIslandOwner(Location location) {
+        Island island = aSkyBlockAPI.getIslandAt(location);
+        if (island == null) return null;
+        return island.getOwner();
     }
 
     @Override

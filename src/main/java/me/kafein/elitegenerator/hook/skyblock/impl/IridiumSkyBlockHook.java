@@ -16,6 +16,7 @@ import org.bukkit.event.EventHandler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class IridiumSkyBlockHook extends SkyBlockHook {
@@ -48,10 +49,9 @@ public class IridiumSkyBlockHook extends SkyBlockHook {
     }
 
     @Override
-    public UUID getIslandOwner(UUID playerUUID) {
-        final User user = userManager.getUserByUUID(playerUUID).get();
-        final Island island = user.getIsland().get();
-        return island.getOwner().getUuid();
+    public UUID getIslandOwner(Location location) {
+        Optional<Island> island = islandManager.getIslandViaLocation(location);
+        return island.map(value -> value.getOwner().getUuid()).orElse(null);
     }
 
     @Override

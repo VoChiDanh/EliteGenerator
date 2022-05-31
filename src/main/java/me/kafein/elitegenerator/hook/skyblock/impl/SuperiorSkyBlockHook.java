@@ -3,6 +3,7 @@ package me.kafein.elitegenerator.hook.skyblock.impl;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.config.SettingsManager;
 import com.bgsoftware.superiorskyblock.api.events.*;
+import com.bgsoftware.superiorskyblock.api.handlers.GridManager;
 import com.bgsoftware.superiorskyblock.api.handlers.PlayersManager;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import me.kafein.elitegenerator.generator.Generator;
@@ -21,6 +22,7 @@ public class SuperiorSkyBlockHook extends SkyBlockHook {
 
     final private PlayersManager playersManager = SuperiorSkyblockAPI.getSuperiorSkyblock().getPlayers();
     final private SettingsManager settingsManager = SuperiorSkyblockAPI.getSuperiorSkyblock().getSettings();
+    private final GridManager gridManager = SuperiorSkyblockAPI.getSuperiorSkyblock().getGrid();
     final private String worldName = settingsManager.getWorlds().getWorldName();
 
     @Override
@@ -46,8 +48,9 @@ public class SuperiorSkyBlockHook extends SkyBlockHook {
     }
 
     @Override
-    public UUID getIslandOwner(UUID playerUUID) {
-        final Island island = playersManager.getSuperiorPlayer(playerUUID).getIsland();
+    public UUID getIslandOwner(Location location) {
+        Island island = gridManager.getIslandAt(location);
+        if (island == null) return null;
         return island.getOwner().getUniqueId();
     }
 

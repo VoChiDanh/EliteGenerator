@@ -47,6 +47,7 @@ public class UpgradeMenu extends Menu {
     }
 
     public void openMenu(Player player, Generator generator) {
+        if (!isEnabled()) return;
 
         final Inventory inventory = this.clone();
 

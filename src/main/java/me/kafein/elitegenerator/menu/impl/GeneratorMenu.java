@@ -33,6 +33,7 @@ public class GeneratorMenu extends Menu {
     }
 
     public void openMenu(final Player player, final Generator generator) {
+        if (!isEnabled()) return;
 
         if (!generator.containsMemberPermission(player.getUniqueId(), MemberPermission.OPEN_SETTINGS)) return;
 

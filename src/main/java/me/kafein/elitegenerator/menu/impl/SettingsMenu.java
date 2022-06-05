@@ -47,6 +47,7 @@ public class SettingsMenu extends Menu {
     }
 
     public void openMenu(final Player player, final Generator generator) {
+        if (!isEnabled()) return;
 
         final Inventory inventory = this.clone();
 

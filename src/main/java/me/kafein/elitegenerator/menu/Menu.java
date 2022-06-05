@@ -36,6 +36,7 @@ public abstract class Menu implements InventoryHolder, Listener {
     private MenuManager menuManager = null;
 
     private Plugin plugin;
+    private boolean enabled;
 
     private Inventory inventory;
     private InventoryType inventoryType;

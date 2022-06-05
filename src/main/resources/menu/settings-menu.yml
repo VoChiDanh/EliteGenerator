@@ -1,4 +1,5 @@
 menu:
+  enabled: true
 
   title: "&6&lEG &7➜ &eSettings"
   size: 54

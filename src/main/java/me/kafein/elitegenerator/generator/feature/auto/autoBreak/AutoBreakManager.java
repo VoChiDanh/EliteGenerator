@@ -1,5 +1,6 @@
 package me.kafein.elitegenerator.generator.feature.auto.autoBreak;
 
+import lombok.Getter;
 import me.kafein.elitegenerator.EliteGenerator;
 import me.kafein.elitegenerator.event.GeneratorBreakEvent;
 import me.kafein.elitegenerator.generator.Generator;
@@ -39,7 +40,7 @@ public class AutoBreakManager {
 
         if (generatorList.isEmpty()) return;
 
-        for (UUID uuid : generatorList) {
+        for (UUID uuid : new ArrayList<>(generatorList)) {
 
             final Generator generator = getGeneratorManager().getGenerator(uuid);
             if (generator == null) {
@@ -47,11 +48,9 @@ public class AutoBreakManager {
                 continue;
             }
 
-            final Block block = generator.getGeneratorLocation().getBlock();
-
-            if (block.isEmpty()) continue;
-
             Bukkit.getScheduler().runTask(plugin, () -> {
+                final Block block = generator.getGeneratorLocation().getBlock();
+                if (block.isEmpty()) return;
                 block.breakNaturally();
                 final GeneratorBreakEvent generatorBreakEvent = new GeneratorBreakEvent(null
                         , generator

@@ -1,4 +1,5 @@
 menu:
+  enabled: true
 
   title: "&6&lElite Generator"
   size: 27

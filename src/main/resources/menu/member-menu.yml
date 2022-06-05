@@ -1,4 +1,5 @@
 menu:
+  enabled: true
 
   title: "&6Member Settings"
   size: 54

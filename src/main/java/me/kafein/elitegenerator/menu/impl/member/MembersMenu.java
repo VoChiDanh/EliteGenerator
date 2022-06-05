@@ -35,6 +35,7 @@ public class MembersMenu extends Menu {
     }
 
     public void openMenu(Player player, Generator generator, int page) {
+        if (!isEnabled()) return;
 
         final Inventory inventory = this.clone();
 

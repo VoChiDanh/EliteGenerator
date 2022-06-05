@@ -1,4 +1,3 @@
-
 #
 #  _____ _     ___ _____ _____    ____ _____ _   _ _____ ____      _  _____ ___  ____
 # | ____| |   |_ _|_   _| ____|  / ___| ____| \ | | ____|  _ \    / \|_   _/ _ \|  _ \
@@ -35,8 +34,10 @@ settings:
       CHANGE_SETTINGS: false
 
     generator-delete-conditions:
-      - "level: 2"
-      - "upgrade: auto_pickup"
+      enabled: true
+      conditions:
+        - "level: 2"
+        - "upgrade: auto_pickup"
 
     generator-first-material: "REDSTONE_ORE"
 

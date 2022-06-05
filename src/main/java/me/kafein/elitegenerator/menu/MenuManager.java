@@ -66,6 +66,8 @@ public class MenuManager {
                     break;
             }
 
+            boolean enabled = fileConfig.containsKey("menu.enabled") ? fileConfig.getBoolean("menu.enabled") : true;
+            menu.setEnabled(enabled);
             menu.register(plugin);
 
             menus.put(menuName, menu);

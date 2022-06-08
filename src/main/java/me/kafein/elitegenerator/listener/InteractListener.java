@@ -55,6 +55,7 @@ public class InteractListener implements Listener {
                 if (generatorManager.containsGeneratorLocation(location)) {
                     final GeneratorMenu generatorMenu = (GeneratorMenu) menuManager.getMenu(MenuManager.MenuType.GENERATOR);
                     generatorMenu.openMenu(player, generatorManager.getGenerator(location));
+                    e.setCancelled(true);
                     return;
                 }
 

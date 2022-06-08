@@ -22,7 +22,7 @@ public class GeneratorDeleteCondition {
         FileConfig config = EliteGenerator.getInstance().getFileManager().getFile(FileManager.ConfigFile.settings);
         if (config.getBoolean("settings.generator.generator-delete-conditions.enabled")) {
             enabled = true;
-            List<String> list = config.getStringList("settings.generator.generator-delete-conditions");
+            List<String> list = config.getStringList("settings.generator.generator-delete-conditions.conditions");
             list.forEach(requirementNotParsed -> {
                 final String[] splitter = requirementNotParsed.split(": ");
                 Requirement requirement = null;

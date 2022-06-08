@@ -33,6 +33,7 @@ language:
 
     generatorIsNotUpgraded: "%prefix% &7Generator could not upgrade because generator requirements could not be met."
     generatorIsNotDeleted: "%prefix% &7Generator could not delete."
+    generatorIsNotPlaced: "%prefix% &7You can't place a generator here."
 
     placeHolder:
       generatorName: "&e%owner%'s Generator"

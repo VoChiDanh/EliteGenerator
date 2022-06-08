@@ -12,6 +12,8 @@ public interface Storage {
 
     void saveUser(final User user);
 
+    void putGeneratorToUser(UUID userUUID, UUID generatorUUID);
+
     @Nullable
     Generator loadGenerator(final UUID generatorUUID);
 

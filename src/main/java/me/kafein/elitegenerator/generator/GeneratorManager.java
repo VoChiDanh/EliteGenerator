@@ -43,7 +43,6 @@ public class GeneratorManager {
 
     private GeneratorItem generatorItem = new GeneratorItem(fileManager.getFile(FileManager.ConfigFile.settings));
     private Material firstBlockMaterial = Material.getMaterial(fileManager.getFile(FileManager.ConfigFile.settings).getString("settings.generator.generator-first-material"));
-
     private boolean boostRunnableStarted;
 
     final private Plugin plugin;
@@ -89,6 +88,11 @@ public class GeneratorManager {
                 || skyBlockHook.getIslandOwner(location) == null
                 || !skyBlockHook.getIslandOwner(location).equals(ownerUUID)) {
             owner.sendMessage(fileManager.getMessage("generator.thisIslandIsNotYour"));
+            return false;
+        }
+
+        if (generatorLocations.containsKey(location)) {
+            owner.sendMessage(fileManager.getMessage("generator.generatorIsNotPlaced"));
             return false;
         }
 
@@ -141,13 +145,10 @@ public class GeneratorManager {
             }
 
             generator.addGeneratorMember(generatorMember);
-
             User user = getUserManager().getUser(uuid);
-            if (user != null) user.addGenerator(generatorUUID);
+            if (user == null) storage.putGeneratorToUser(uuid, generatorUUID);
             else {
-                user = getUserManager().getUserFromStorage(uuid);
-                user.addGenerator(generatorUUID);
-                getUserManager().saveUser(user);
+                if (!user.containsGenerator(generatorUUID)) user.addGenerator(generatorUUID);
             }
 
         }
@@ -208,6 +209,7 @@ public class GeneratorManager {
     public void saveGenerator(final UUID generatorUUID) {
 
         final Generator generator = generators.get(generatorUUID);
+        if (generator == null) return;
 
         hologramHook.deleteHologram(generator);
 

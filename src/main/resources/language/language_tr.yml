@@ -33,6 +33,7 @@ language:
 
     generatorIsNotUpgraded: "%prefix% &7Jeneratör yeterlilikler sağlanmadığı için yükseltilemedi."
     generatorIsNotDeleted: "%prefix% &7Jeneratör silinemedi."
+    generatorIsNotPlaced: "%prefix% &7Jeneratörü buraya koyamazsın."
 
     placeHolder:
       generatorName: "&e%owner%'nın Jeneratörü"

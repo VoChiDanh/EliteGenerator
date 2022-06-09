@@ -257,7 +257,8 @@ public class GeneratorManager {
 
         featureManager.getRegenManager().removeRegenGenerator(generator.getGeneratorLocation());
         generatorLocations.remove(generator.getGeneratorLocation());
-        generatorIslands.remove(generator.getIslandLocation());
+        generatorIslands.get(generator.getIslandLocation()).remove(generatorUUID);
+        if (generatorIslands.get(generator.getIslandLocation()).isEmpty()) generatorIslands.remove(generator.getIslandLocation());
         storage.deleteGenerator(generatorUUID);
         generators.remove(generatorUUID);
 

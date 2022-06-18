@@ -1,5 +1,6 @@
 package me.kafein.elitegenerator.listener;
 
+import io.github.thebusybiscuit.slimefun4.api.events.AndroidMineEvent;
 import me.kafein.elitegenerator.EliteGenerator;
 import me.kafein.elitegenerator.event.GeneratorBreakEvent;
 import me.kafein.elitegenerator.generator.Generator;
@@ -36,6 +37,17 @@ public class GeneratorBreakListener implements Listener {
         this.plugin = plugin;
     }
 
+    @EventHandler
+    public void onBotMine(AndroidMineEvent e) {
+
+        if (!generatorManager.containsGeneratorLocation(e.getBlock().getLocation())) return;
+
+        final Generator generator = generatorManager.getGenerator(e.getBlock().getLocation());
+        final Location location = e.getBlock().getLocation();
+
+        Material material = oreGenManager.getOreGenForGenerator(generator).randomMaterial(random);
+        regenManager.addRegenGenerator(location, material);
+    }
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBreak(final GeneratorBreakEvent e) {
 
@@ -45,14 +57,14 @@ public class GeneratorBreakListener implements Listener {
 
         if (e.isAutoBreak()) {
 
-            if (e.isAutoChest() && e.getPlayer() != null) {
+            if (e.isAutoChest()) {
+
                 if (!e.isAutoPickup() || generator.getAutoChest().isChestBreaked()) {
 
                     generator.clearAutoChest();
                     autoPickup = new AutoPickup(null, null);
 
                 } else autoPickup = new AutoPickup(generator.getAutoChest().getInventory(), null);
-
 
             } else {
 
@@ -61,40 +73,30 @@ public class GeneratorBreakListener implements Listener {
             }
 
         } else {
-            if (e.getPlayer() != null) {
-                final ItemStack itemStack = (e.getPlayer().getItemInHand() == null ? null : e.getPlayer().getItemInHand());
 
-                if (e.isAutoChest()) {
+            final ItemStack itemStack = (e.getPlayer().getItemInHand() == null ? null : e.getPlayer().getItemInHand());
 
-                    if (!e.isAutoPickup() || generator.getAutoChest().isChestBreaked()) {
+            if (e.isAutoChest()) {
 
-                        generator.clearAutoChest();
-                        autoPickup = new AutoPickup(null, itemStack);
+                if (!e.isAutoPickup() || generator.getAutoChest().isChestBreaked()) {
 
-                    } else autoPickup = new AutoPickup(generator.getAutoChest().getInventory(), itemStack);
+                    generator.clearAutoChest();
+                    autoPickup = new AutoPickup(null, itemStack);
+
+                } else autoPickup = new AutoPickup(generator.getAutoChest().getInventory(), itemStack);
+
+            } else {
+
+                if (e.isAutoPickup()) {
+
+                    autoPickup = new AutoPickup(e.getPlayer().getInventory(), itemStack);
 
                 } else {
 
-                    if (e.isAutoPickup()) {
-
-                        autoPickup = new AutoPickup(e.getPlayer().getInventory(), itemStack);
-
-                    } else {
-
-                        autoPickup = new AutoPickup(null, itemStack);
-
-                    }
+                    autoPickup = new AutoPickup(null, itemStack);
 
                 }
-            } else {
-                autoPickup = new AutoPickup(null, null);
 
-                final Location location = e.getBlock().getLocation();
-                Material material = oreGenManager.getOreGenForGenerator(generator).randomMaterial(random);
-
-                regenManager.addRegenGenerator(location, material);
-
-                return;
             }
 
         }

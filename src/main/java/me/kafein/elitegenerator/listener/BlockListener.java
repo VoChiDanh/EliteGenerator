@@ -1,5 +1,6 @@
 package me.kafein.elitegenerator.listener;
 
+import io.github.thebusybiscuit.slimefun4.api.events.AndroidMineEvent;
 import me.kafein.elitegenerator.EliteGenerator;
 import me.kafein.elitegenerator.event.GeneratorBreakEvent;
 import me.kafein.elitegenerator.generator.Generator;
@@ -53,6 +54,35 @@ public class BlockListener implements Listener {
             e.setExpToDrop(0);
         }
 
+    }
+
+    @EventHandler (priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onBotBreak(final AndroidMineEvent e) {
+
+        final Block block = e.getBlock();
+
+        if (!generatorManager.containsGeneratorLocation(block.getLocation())) return;
+
+        final Player player = null;
+        final Generator generator = generatorManager.getGenerator(block.getLocation());
+
+        if (!generator.containsGeneratorMember(player.getUniqueId())
+                || !generator.containsMemberPermission(player.getUniqueId(), MemberPermission.BREAK_GENERATOR)) {
+            e.setCancelled(true);
+            return;
+        }
+
+        final GeneratorBreakEvent generatorBreakEvent = new GeneratorBreakEvent(
+                player
+                , generator
+                , block
+                , false
+                , generator.isAutoPickupEnabled()
+                , generator.isAutoSmeltEnabled()
+                , generator.isAutoChestEnabled()
+                , false);
+
+        pluginManager.callEvent(generatorBreakEvent);
     }
 
 }

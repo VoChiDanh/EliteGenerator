@@ -45,14 +45,14 @@ public class GeneratorBreakListener implements Listener {
 
         if (e.isAutoBreak()) {
 
-            if (e.isAutoChest()) {
-
+            if (e.isAutoChest() && e.getPlayer() != null) {
                 if (!e.isAutoPickup() || generator.getAutoChest().isChestBreaked()) {
 
                     generator.clearAutoChest();
                     autoPickup = new AutoPickup(null, null);
 
                 } else autoPickup = new AutoPickup(generator.getAutoChest().getInventory(), null);
+
 
             } else {
 
@@ -61,30 +61,40 @@ public class GeneratorBreakListener implements Listener {
             }
 
         } else {
+            if (e.getPlayer() != null) {
+                final ItemStack itemStack = (e.getPlayer().getItemInHand() == null ? null : e.getPlayer().getItemInHand());
 
-            final ItemStack itemStack = (e.getPlayer().getItemInHand() == null ? null : e.getPlayer().getItemInHand());
+                if (e.isAutoChest()) {
 
-            if (e.isAutoChest()) {
+                    if (!e.isAutoPickup() || generator.getAutoChest().isChestBreaked()) {
 
-                if (!e.isAutoPickup() || generator.getAutoChest().isChestBreaked()) {
+                        generator.clearAutoChest();
+                        autoPickup = new AutoPickup(null, itemStack);
 
-                    generator.clearAutoChest();
-                    autoPickup = new AutoPickup(null, itemStack);
-
-                } else autoPickup = new AutoPickup(generator.getAutoChest().getInventory(), itemStack);
-
-            } else {
-
-                if (e.isAutoPickup()) {
-
-                    autoPickup = new AutoPickup(e.getPlayer().getInventory(), itemStack);
+                    } else autoPickup = new AutoPickup(generator.getAutoChest().getInventory(), itemStack);
 
                 } else {
 
-                    autoPickup = new AutoPickup(null, itemStack);
+                    if (e.isAutoPickup()) {
+
+                        autoPickup = new AutoPickup(e.getPlayer().getInventory(), itemStack);
+
+                    } else {
+
+                        autoPickup = new AutoPickup(null, itemStack);
+
+                    }
 
                 }
+            } else {
+                autoPickup = new AutoPickup(null, null);
 
+                final Location location = e.getBlock().getLocation();
+                Material material = oreGenManager.getOreGenForGenerator(generator).randomMaterial(random);
+
+                regenManager.addRegenGenerator(location, material);
+
+                return;
             }
 
         }

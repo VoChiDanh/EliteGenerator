@@ -63,6 +63,13 @@ public class IridiumSkyBlockHook extends SkyBlockHook {
         return memberList;
     }
 
+    @Override
+    public List<UUID> getIslandMembers(Location location) {
+        Optional<Island> island = islandManager.getIslandViaLocation(location);
+        final List<UUID> memberList = new ArrayList<>();
+        island.get().getMembers().forEach(member -> memberList.add(member.getUuid()));
+        return memberList;
+    }
 
     @EventHandler
     public void onDelete(final IslandDeleteEvent e) {

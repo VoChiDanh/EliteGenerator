@@ -67,6 +67,12 @@ public class BSkyBlockHook extends SkyBlockHook {
         return new ArrayList<>(islandsManager.getIsland(getIslandWorld(), playersManager.getUser(playerUUID)).getMemberSet());
     }
 
+    @Override
+    public List<UUID> getIslandMembers(Location location) {
+        Optional<Island> island = islandsManager.getIslandAt(location);
+        return new ArrayList<>(island.get().getMemberSet());
+    }
+
     @EventHandler
     public void onDelete(final IslandDeleteEvent e) {
 

@@ -86,7 +86,7 @@ public class GeneratorManager {
 
         if (!skyBlockHook.hasIsland(ownerUUID)
                 || skyBlockHook.getIslandMembers(location) == null
-                || !skyBlockHook.getIslandMembers(location).equals(ownerUUID)) {
+                || !skyBlockHook.getIslandMembers(location).contains(ownerUUID)) {
             owner.sendMessage(fileManager.getMessage("generator.thisIslandIsNotYour"));
             return false;
         }

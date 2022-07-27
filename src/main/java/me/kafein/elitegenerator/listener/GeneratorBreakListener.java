@@ -1,6 +1,5 @@
 package me.kafein.elitegenerator.listener;
 
-import io.github.thebusybiscuit.slimefun4.api.events.AndroidMineEvent;
 import me.kafein.elitegenerator.EliteGenerator;
 import me.kafein.elitegenerator.event.GeneratorBreakEvent;
 import me.kafein.elitegenerator.generator.Generator;
@@ -10,7 +9,6 @@ import me.kafein.elitegenerator.generator.feature.auto.autoPickup.AutoPickup;
 import me.kafein.elitegenerator.generator.feature.auto.autoPickup.AutoPickupManager;
 import me.kafein.elitegenerator.generator.feature.oreGen.OreGenManager;
 import me.kafein.elitegenerator.generator.feature.regen.RegenManager;
-import me.kafein.elitegenerator.generator.feature.regen.RegenRunnable;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -37,17 +35,6 @@ public class GeneratorBreakListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler
-    public void onBotMine(AndroidMineEvent e) {
-
-        if (!generatorManager.containsGeneratorLocation(e.getBlock().getLocation())) return;
-
-        final Generator generator = generatorManager.getGenerator(e.getBlock().getLocation());
-        final Location location = e.getBlock().getLocation();
-
-        Material material = oreGenManager.getOreGenForGenerator(generator).randomMaterial(random);
-        regenManager.addRegenGenerator(location, material);
-    }
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBreak(final GeneratorBreakEvent e) {
 

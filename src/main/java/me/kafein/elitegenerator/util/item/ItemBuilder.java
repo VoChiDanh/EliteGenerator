@@ -57,7 +57,7 @@ public class ItemBuilder extends ItemStack {
 
     public ItemBuilder setLore(final List<String> list) {
         if (list == null || list.isEmpty()) return this;
-        list.replaceAll(e -> ColorSerializer.serialize(e));
+        list.replaceAll(ColorSerializer::serialize);
         itemMeta.setLore(list);
         return this;
     }
@@ -71,7 +71,7 @@ public class ItemBuilder extends ItemStack {
     public ItemBuilder addLore(final String... var) {
         if (var == null) return this;
         if (itemMeta.getLore() == null) {
-            Arrays.stream(var).forEach(e -> ColorSerializer.serialize(e));
+            Arrays.stream(var).forEach(ColorSerializer::serialize);
             itemMeta.setLore(Arrays.asList(var));
         }else Arrays.stream(var).forEach(e -> itemMeta.getLore().add(ColorSerializer.serialize(e)));
 

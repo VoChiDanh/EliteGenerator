@@ -38,6 +38,8 @@ public class GeneratorBreakListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBreak(final GeneratorBreakEvent e) {
 
+        final Location location = e.getBlock().getLocation();
+
         final Generator generator = e.getGenerator();
 
         AutoPickup autoPickup;
@@ -87,8 +89,6 @@ public class GeneratorBreakListener implements Listener {
             }
 
         }
-
-        final Location location = e.getBlock().getLocation();
 
         autoPickup.setAutoSmeltEnabled(e.isAutoSmelt());
         autoPickupManager.addAutoPickup(location, autoPickup);

@@ -21,6 +21,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nullable;
@@ -40,6 +41,7 @@ public class GeneratorManager {
     final private Map<UUID, Generator> generators = new HashMap<>();
     final private Map<Location, UUID> generatorLocations = new HashMap<>();
     final private Map<Location, List<UUID>> generatorIslands = new HashMap<>();
+    final private GeneratorManager generatorManager = EliteGenerator.getInstance().getGeneratorManager();
 
     private GeneratorItem generatorItem = new GeneratorItem(fileManager.getFile(FileManager.ConfigFile.settings));
     private Material firstBlockMaterial = Material.getMaterial(fileManager.getFile(FileManager.ConfigFile.settings).getString("settings.generator.generator-first-material"));
@@ -263,6 +265,10 @@ public class GeneratorManager {
         generators.remove(generatorUUID);
 
         generator.getGeneratorLocation().getBlock().setType(Material.AIR);
+        Player p = Bukkit.getPlayer(generator.getOwnerUUID());
+        if (p != null && p.isOnline()) {
+            p.getInventory().addItem(generatorManager.getGeneratorItem().create(1, false, false, false, false));
+        }
 
         return true;
 

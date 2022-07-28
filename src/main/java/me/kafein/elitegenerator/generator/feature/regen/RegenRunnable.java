@@ -38,7 +38,7 @@ public class RegenRunnable implements Runnable {
 
             if (regen.getDelay() <= 0) {
                 Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                    if (getRandom(1,12) == 6) {
+                    if (getRandom(1,7) == 3) {
                         CustomBlock.place(list.get(getRandom(0 , list.size() - 1)), regen.getLocation());
                     } else {
                         regen.getLocation().getBlock().setType(regen.getMaterial());

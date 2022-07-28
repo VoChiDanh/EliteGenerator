@@ -5,6 +5,7 @@ import me.kafein.elitegenerator.command.GeneratorCMD;
 import me.kafein.elitegenerator.config.FileManager;
 import me.kafein.elitegenerator.generator.GeneratorManager;
 import me.kafein.elitegenerator.generator.feature.auto.autoPickup.listener.AutoPickupListener;
+import me.kafein.elitegenerator.generator.feature.regen.RegenRunnable;
 import me.kafein.elitegenerator.hook.HookManager;
 import me.kafein.elitegenerator.hook.VaultHook;
 import me.kafein.elitegenerator.listener.*;
@@ -70,6 +71,7 @@ public final class EliteGenerator extends JavaPlugin {
         getCommand("elitegenerator").setExecutor(new GeneratorCMD());
 
         registerListeners(pluginManager);
+        RegenRunnable.load();
 
     }
 

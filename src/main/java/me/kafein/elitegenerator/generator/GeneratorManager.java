@@ -265,10 +265,6 @@ public class GeneratorManager {
         generators.remove(generatorUUID);
 
         generator.getGeneratorLocation().getBlock().setType(Material.AIR);
-        Player p = Bukkit.getPlayer(generator.getOwnerUUID());
-        if (p != null && p.isOnline()) {
-            p.getInventory().addItem(generatorManager.getGeneratorItem().create(1, false, false, false, false));
-        }
 
         return true;
 

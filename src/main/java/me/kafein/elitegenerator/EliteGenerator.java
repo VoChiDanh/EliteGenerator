@@ -15,6 +15,7 @@ import me.kafein.elitegenerator.storage.StorageManager;
 import me.kafein.elitegenerator.user.UserManager;
 import me.kafein.elitegenerator.util.placeholder.PlaceHolder;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -72,6 +73,10 @@ public final class EliteGenerator extends JavaPlugin {
 
         registerListeners(pluginManager);
         RegenRunnable.load();
+
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            userManager.loadUser(p.getUniqueId());
+        }
 
     }
 

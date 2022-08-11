@@ -85,9 +85,8 @@ public final class EliteGenerator extends JavaPlugin {
 
         generatorManager.getFeatureManager().getRegenManager().shutdown();
 
-        generatorManager.saveGenerators();
-
         userManager.saveUsers();
+        generatorManager.saveGenerators();
 
     }
 

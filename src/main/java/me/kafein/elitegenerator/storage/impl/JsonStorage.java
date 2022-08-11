@@ -17,6 +17,8 @@ import org.bukkit.plugin.Plugin;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -49,18 +51,23 @@ public class JsonStorage implements Storage {
             final User user = new User(userUUID);
 
             final JsonObject jsonObject = new JsonObject(gson);
-
             jsonObject.addObject("user", user);
-
             jsonObject.saveToFile(file);
 
             return user;
 
         }
 
-        final JsonObject jsonObject = new JsonObject(gson, file);
+        User user = new User(userUUID);
 
-        return jsonObject.getObject("user", User.class);
+        final JsonObject jsonObject = new JsonObject(gson, file).getIJsonObject("user");
+        List<String> list = jsonObject.getObject("generators", new TypeToken<List<String>>(){}.getType());
+        list.forEach(uuidString ->{
+            UUID uuid = UUID.fromString(uuidString);
+            user.addGenerator(uuid);
+        });
+
+        return user;
 
     }
 
@@ -78,9 +85,7 @@ public class JsonStorage implements Storage {
         }
 
         JsonObject jsonObject = new JsonObject(gson);
-
         jsonObject.addObject("user", user);
-
         jsonObject.saveToFile(file);
 
     }

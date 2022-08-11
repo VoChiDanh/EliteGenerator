@@ -5,7 +5,7 @@ api-version: 1.13
 authors: [ Kafein ]
 description: Elite Generator Plugin.
 depend: [Vault]
-softdepend: [HolographicDisplays, DecentHolograms, ASkyBlock, BentoBox, SuperiorSkyblock2, IridiumSkyblock, FabledSkyBlock, ItemsAdder]
+softdepend: [HolographicDisplays, DecentHolograms, ASkyBlock, BentoBox, SuperiorSkyblock2, IridiumSkyblock, FabledSkyBlock, ItemsAdder, JetsMinions]
 commands:
   elitegenerator:
     aliases: [generator]

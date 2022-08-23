@@ -180,7 +180,7 @@
             <artifactId>jet</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>/home/xiaozhangup/IdeaProjects/EliteGenerator/lib/JetsMinions-7.6.6.jar</systemPath>
+            <systemPath>${project.basedir}/libs/JetsMinions-7.6.6.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

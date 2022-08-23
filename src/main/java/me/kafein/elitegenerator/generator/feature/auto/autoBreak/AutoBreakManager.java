@@ -1,12 +1,16 @@
 package me.kafein.elitegenerator.generator.feature.auto.autoBreak;
 
+import dev.lone.itemsadder.api.CustomBlock;
 import lombok.Getter;
 import me.kafein.elitegenerator.EliteGenerator;
 import me.kafein.elitegenerator.event.GeneratorBreakEvent;
 import me.kafein.elitegenerator.generator.Generator;
 import me.kafein.elitegenerator.generator.GeneratorManager;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Item;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
@@ -30,6 +34,8 @@ public class AutoBreakManager {
         this.plugin = plugin;
     }
 
+    private final ItemStack pickaxe = new ItemStack(Material.NETHERITE_PICKAXE);
+
     public void startRunnable() {
         if (isRunnableStarted) return;
         new AutoBreakRunnable().start(plugin);
@@ -51,7 +57,14 @@ public class AutoBreakManager {
             Bukkit.getScheduler().runTask(plugin, () -> {
                 final Block block = generator.getGeneratorLocation().getBlock();
                 if (block.isEmpty()) return;
-                block.breakNaturally();
+                if (block.getType() == Material.NOTE_BLOCK) {
+                    CustomBlock.getLoot(block, pickaxe, false).forEach((itemStack -> {
+                        block.getLocation().getWorld().dropItem(block.getLocation(), itemStack);
+                    }));
+                    CustomBlock.remove(block.getLocation());
+                } else {
+                    block.breakNaturally();
+                }
                 final GeneratorBreakEvent generatorBreakEvent = new GeneratorBreakEvent(null
                         , generator
                         , block

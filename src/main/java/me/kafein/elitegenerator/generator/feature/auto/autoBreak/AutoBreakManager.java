@@ -58,7 +58,7 @@ public class AutoBreakManager {
                 final Block block = generator.getGeneratorLocation().getBlock();
                 if (block.isEmpty()) return;
                 if (block.getType() == Material.NOTE_BLOCK) {
-                    CustomBlock.getLoot(block, pickaxe, false).forEach((itemStack -> {
+                    CustomBlock.getLoot(block, pickaxe, true).forEach((itemStack -> {
                         block.getLocation().getWorld().dropItem(block.getLocation(), itemStack);
                     }));
                     CustomBlock.remove(block.getLocation());

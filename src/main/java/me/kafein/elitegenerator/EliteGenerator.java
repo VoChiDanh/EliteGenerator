@@ -91,7 +91,6 @@ public final class EliteGenerator extends JavaPlugin {
     }
 
     private void registerListeners(final PluginManager pluginManager) {
-
         pluginManager.registerEvents(new PlayerListener(this), this);
         pluginManager.registerEvents(new InventoryListener(), this);
         pluginManager.registerEvents(new BlockListener(), this);
@@ -99,7 +98,9 @@ public final class EliteGenerator extends JavaPlugin {
         pluginManager.registerEvents(new InteractListener(), this);
         pluginManager.registerEvents(new AutoPickupListener(), this);
         pluginManager.registerEvents(new ExplodeListener(), this);
-
+        if (pluginManager.getPlugin("ItemsAdder") != null) {
+            pluginManager.registerEvents(new IABlockListener(), this);
+        }
     }
 
 }

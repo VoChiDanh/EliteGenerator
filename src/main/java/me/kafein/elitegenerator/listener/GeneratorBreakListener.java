@@ -1,5 +1,6 @@
 package me.kafein.elitegenerator.listener;
 
+import me.jet315.minions.events.MinerBlockBreakEvent;
 import me.kafein.elitegenerator.EliteGenerator;
 import me.kafein.elitegenerator.event.GeneratorBreakEvent;
 import me.kafein.elitegenerator.generator.Generator;
@@ -37,6 +38,8 @@ public class GeneratorBreakListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBreak(final GeneratorBreakEvent e) {
+
+        final Location location = e.getBlock().getLocation();
 
         final Generator generator = e.getGenerator();
 
@@ -88,13 +91,23 @@ public class GeneratorBreakListener implements Listener {
 
         }
 
-        final Location location = e.getBlock().getLocation();
-
         autoPickup.setAutoSmeltEnabled(e.isAutoSmelt());
         autoPickupManager.addAutoPickup(location, autoPickup);
 
         Material material = oreGenManager.getOreGenForGenerator(generator).randomMaterial(random);
 
+        regenManager.addRegenGenerator(location, material);
+
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onBotBreak(MinerBlockBreakEvent e) {
+        if (!generatorManager.containsGeneratorLocation(e.getBlock().getLocation())) return;
+
+        final Generator generator = generatorManager.getGenerator(e.getBlock().getLocation());
+        final Location location = e.getBlock().getLocation();
+
+        Material material = oreGenManager.getOreGenForGenerator(generator).randomMaterial(random);
         regenManager.addRegenGenerator(location, material);
 
     }

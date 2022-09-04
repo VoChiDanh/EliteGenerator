@@ -66,7 +66,7 @@ public class FileManager {
 
     public List<String> getMessageList(final String property) {
         final List<String> list = getFile(ConfigFile.language).getStringList("language." + property);
-        list.replaceAll(message -> ColorSerializer.serialize(message));
+        list.replaceAll(ColorSerializer::serialize);
         return list;
     }
 

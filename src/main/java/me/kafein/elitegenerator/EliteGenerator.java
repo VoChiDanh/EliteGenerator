@@ -5,6 +5,7 @@ import me.kafein.elitegenerator.command.GeneratorCMD;
 import me.kafein.elitegenerator.config.FileManager;
 import me.kafein.elitegenerator.generator.GeneratorManager;
 import me.kafein.elitegenerator.generator.feature.auto.autoPickup.listener.AutoPickupListener;
+import me.kafein.elitegenerator.generator.feature.regen.RegenRunnable;
 import me.kafein.elitegenerator.hook.HookManager;
 import me.kafein.elitegenerator.hook.VaultHook;
 import me.kafein.elitegenerator.listener.*;
@@ -14,6 +15,7 @@ import me.kafein.elitegenerator.storage.StorageManager;
 import me.kafein.elitegenerator.user.UserManager;
 import me.kafein.elitegenerator.util.placeholder.PlaceHolder;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -70,6 +72,11 @@ public final class EliteGenerator extends JavaPlugin {
         getCommand("elitegenerator").setExecutor(new GeneratorCMD());
 
         registerListeners(pluginManager);
+        RegenRunnable.load();
+
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            userManager.loadUser(p.getUniqueId());
+        }
 
     }
 

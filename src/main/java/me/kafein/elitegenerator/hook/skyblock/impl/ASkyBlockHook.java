@@ -49,6 +49,12 @@ public class ASkyBlockHook extends SkyBlockHook {
         return aSkyBlockAPI.getIslandOwnedBy(playerUUID).getMembers();
     }
 
+    @Override
+    public List<UUID> getIslandMembers(Location location) {
+        Island island = aSkyBlockAPI.getIslandAt(location);
+        return island.getMembers();
+    }
+
     @EventHandler
     public void onDelete(final IslandDeleteEvent e) {
 

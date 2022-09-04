@@ -24,11 +24,7 @@ public class UserManager {
 
             if (users.isEmpty()) return false;
 
-            users.keySet().forEach(userUUID -> {
-
-                storage.saveUser(users.get(userUUID));
-
-            });
+            users.keySet().forEach(userUUID -> storage.saveUser(users.get(userUUID)));
 
             return true;
 

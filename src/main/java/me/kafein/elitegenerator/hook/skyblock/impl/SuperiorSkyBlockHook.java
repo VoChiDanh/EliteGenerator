@@ -62,6 +62,14 @@ public class SuperiorSkyBlockHook extends SkyBlockHook {
         return memberList;
     }
 
+    @Override
+    public List<UUID> getIslandMembers(Location location) {
+        final Island island = gridManager.getIslandAt(location);
+        final List<UUID> memberList = new ArrayList<>();
+        island.getIslandMembers(true).forEach(member -> memberList.add(member.getUniqueId()));
+        return memberList;
+    }
+
     @EventHandler
     public void onDelete(final IslandDisbandEvent e) {
 

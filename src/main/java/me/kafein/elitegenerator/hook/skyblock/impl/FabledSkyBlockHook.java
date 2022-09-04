@@ -62,6 +62,13 @@ public class FabledSkyBlockHook extends SkyBlockHook {
         return list;
     }
 
+    @Override
+    public List<UUID> getIslandMembers(Location location) {
+        Island island = islandManager.getIslandAtLocation(location);
+        final List<UUID> list = new ArrayList<>(island.getCoopPlayers().keySet());
+        return list;
+    }
+
     @EventHandler
     public void onDelete(final IslandDeleteEvent e) {
 

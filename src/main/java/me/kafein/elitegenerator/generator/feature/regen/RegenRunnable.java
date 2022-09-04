@@ -11,45 +11,12 @@ import java.util.List;
 
 public class RegenRunnable implements Runnable {
 
-    final private RegenManager regenManager = EliteGenerator.getInstance().getGeneratorManager().getFeatureManager().getRegenManager();
-
-    final private Plugin plugin;
-
     public static List<String> list = new ArrayList<>();
+    final private RegenManager regenManager = EliteGenerator.getInstance().getGeneratorManager().getFeatureManager().getRegenManager();
+    final private Plugin plugin;
 
     public RegenRunnable(final Plugin plugin) {
         this.plugin = plugin;
-    }
-
-    public void start() {
-        Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, this, 1, 1);
-    }
-
-    @Override
-    public void run() {
-
-        if (regenManager.isRegenGeneratorsIsEmpty()) return;
-
-        final Iterator<Regen> regenIterator = regenManager.getRegenGenerators();
-
-        while (regenIterator.hasNext()) {
-
-            final Regen regen = regenIterator.next();
-
-            if (regen.getDelay() <= 0) {
-                Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                    if (getRandom(1,4) == 3) {
-                        CustomBlock.place(list.get(getRandom(0 , list.size() - 1)), regen.getLocation());
-                    } else {
-                        regen.getLocation().getBlock().setType(regen.getMaterial());
-                    }
-                });
-                regenManager.removeRegenGenerator(regen.getLocation());
-                regenIterator.remove();
-            } else regen.setDelay(regen.getDelay() - 1);
-
-        }
-
     }
 
     public static void load() {
@@ -70,6 +37,37 @@ public class RegenRunnable implements Runnable {
 
     public static Integer getRandom(int start, int end) {
         return (int) (Math.random() * (end - start + 1) + start);
+    }
+
+    public void start() {
+        Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, this, 1, 1);
+    }
+
+    @Override
+    public void run() {
+
+        if (regenManager.isRegenGeneratorsIsEmpty()) return;
+
+        final Iterator<Regen> regenIterator = regenManager.getRegenGenerators();
+
+        while (regenIterator.hasNext()) {
+
+            final Regen regen = regenIterator.next();
+
+            if (regen.getDelay() <= 0) {
+                Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+                    if (getRandom(1, 4) == 3) {
+                        CustomBlock.place(list.get(getRandom(0, list.size() - 1)), regen.getLocation());
+                    } else {
+                        regen.getLocation().getBlock().setType(regen.getMaterial());
+                    }
+                });
+                regenManager.removeRegenGenerator(regen.getLocation());
+                regenIterator.remove();
+            } else regen.setDelay(regen.getDelay() - 1);
+
+        }
+
     }
 
 }

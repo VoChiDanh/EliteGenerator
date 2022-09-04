@@ -35,17 +35,14 @@ public class GeneratorManager {
     final private SkyBlockHook skyBlockHook = EliteGenerator.getInstance().getHookManager().getSkyBlockHook();
     final private Permission permission = VaultHook.getPermission();
     final private FeatureManager featureManager;
-    private UserManager userManager;
-
     final private Map<UUID, Generator> generators = new HashMap<>();
     final private Map<Location, UUID> generatorLocations = new HashMap<>();
     final private Map<Location, List<UUID>> generatorIslands = new HashMap<>();
-
+    final private Plugin plugin;
+    private UserManager userManager;
     private GeneratorItem generatorItem = new GeneratorItem(fileManager.getFile(FileManager.ConfigFile.settings));
     private Material firstBlockMaterial = Material.getMaterial(fileManager.getFile(FileManager.ConfigFile.settings).getString("settings.generator.generator-first-material"));
     private boolean boostRunnableStarted;
-
-    final private Plugin plugin;
 
     public GeneratorManager(final Plugin plugin) {
         this.plugin = plugin;
@@ -258,7 +255,8 @@ public class GeneratorManager {
         featureManager.getRegenManager().removeRegenGenerator(generator.getGeneratorLocation());
         generatorLocations.remove(generator.getGeneratorLocation());
         generatorIslands.get(generator.getIslandLocation()).remove(generatorUUID);
-        if (generatorIslands.get(generator.getIslandLocation()).isEmpty()) generatorIslands.remove(generator.getIslandLocation());
+        if (generatorIslands.get(generator.getIslandLocation()).isEmpty())
+            generatorIslands.remove(generator.getIslandLocation());
         storage.deleteGenerator(generatorUUID);
         generators.remove(generatorUUID);
 

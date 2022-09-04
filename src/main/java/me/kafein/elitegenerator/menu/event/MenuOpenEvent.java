@@ -20,6 +20,10 @@ public class MenuOpenEvent extends Event {
         this.player = player;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
+
     public InventoryOpenEvent getOpenEvent() {
         return openEvent;
     }
@@ -34,10 +38,6 @@ public class MenuOpenEvent extends Event {
 
     @Override
     public HandlerList getHandlers() {
-        return handlerList;
-    }
-
-    public static HandlerList getHandlerList() {
         return handlerList;
     }
 

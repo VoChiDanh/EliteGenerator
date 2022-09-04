@@ -82,7 +82,7 @@ public class GeneratorMenu extends Menu {
             final UpgradeMenu upgradeMenu = (UpgradeMenu) getMenuManager().getMenu(MenuManager.MenuType.UPGRADE);
             upgradeMenu.openMenu(player, generator);
 
-        }else if (e.getSlot() == fileConfig.getInt("menu.items.settings.slot")) {
+        } else if (e.getSlot() == fileConfig.getInt("menu.items.settings.slot")) {
 
             final SettingsMenu settingsMenu = (SettingsMenu) getMenuManager().getMenu(MenuManager.MenuType.SETTINGS);
             settingsMenu.openMenu(player, generator);
@@ -92,9 +92,11 @@ public class GeneratorMenu extends Menu {
     }
 
     @Override
-    public void onOpen(MenuOpenEvent e) {}
+    public void onOpen(MenuOpenEvent e) {
+    }
 
     @Override
-    public void onClose(MenuCloseEvent e) {}
+    public void onClose(MenuCloseEvent e) {
+    }
 
 }

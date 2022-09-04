@@ -53,7 +53,7 @@ public final class EliteGenerator extends JavaPlugin {
             getLogger().warning("SkyBlock API is not exists!");
             pluginManager.disablePlugin(this);
             return;
-        }else if (!hookManager.hasHologramHook()) {
+        } else if (!hookManager.hasHologramHook()) {
             getLogger().warning("Hologram API is not exists!");
             pluginManager.disablePlugin(this);
             return;

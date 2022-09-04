@@ -28,7 +28,8 @@ public abstract class Upgrade {
 
     public boolean hasRequirements(final Player player, final Generator generator) {
         for (Requirement requirement : requirementList) {
-            if (requirement.getRequirementType() == RequirementType.GENERATOR ? requirement.has(generator) : requirement.has(player)) continue;
+            if (requirement.getRequirementType() == RequirementType.GENERATOR ? requirement.has(generator) : requirement.has(player))
+                continue;
             return false;
         }
         return true;

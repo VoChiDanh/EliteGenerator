@@ -40,8 +40,7 @@ public class BoostRunnable implements Runnable {
             if (boost.getTime() <= 0) {
                 generator.clearBoost();
                 Bukkit.getScheduler().runTask(plugin, () -> hologramHook.reloadHologram(generator));
-            }
-            else {
+            } else {
                 boost.removeTime(1);
                 hologramHook.reloadBoostLine(generator);
             }

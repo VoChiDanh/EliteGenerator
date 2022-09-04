@@ -17,6 +17,10 @@ public class GeneratorDeleteEvent extends Event implements Cancellable {
         this.cancelled = cancelled;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
+
     public Generator getGenerator() {
         return generator;
     }
@@ -33,10 +37,6 @@ public class GeneratorDeleteEvent extends Event implements Cancellable {
 
     @Override
     public HandlerList getHandlers() {
-        return handlerList;
-    }
-
-    public static HandlerList getHandlerList() {
         return handlerList;
     }
 

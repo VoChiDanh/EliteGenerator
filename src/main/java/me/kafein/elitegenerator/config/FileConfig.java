@@ -6,8 +6,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 public class FileConfig {
 
@@ -47,7 +47,7 @@ public class FileConfig {
     }
 
     public List<String> getStringList(final String key) {
-        if (!containsKey(key)) return Arrays.asList();
+        if (!containsKey(key)) return Collections.emptyList();
         return configuration.getStringList(key);
     }
 

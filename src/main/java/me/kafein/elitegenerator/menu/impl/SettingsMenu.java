@@ -33,9 +33,9 @@ public class SettingsMenu extends Menu {
     final private FileManager fileManager = EliteGenerator.getInstance().getFileManager();
     final private GeneratorManager generatorManager = EliteGenerator.getInstance().getGeneratorManager();
     final private FeatureManager featureManager = generatorManager.getFeatureManager();
-    final private HologramHook hologramHook = EliteGenerator.getInstance().getHookManager().getHologramHook();
     final private AutoChestManager autoChestManager = featureManager.getAutoChestManager();
     final private AutoBreakManager autoBreakManager = featureManager.getAutoBreakManager();
+    final private HologramHook hologramHook = EliteGenerator.getInstance().getHookManager().getHologramHook();
 
     public SettingsMenu(String title, int size, FileConfig fileConfig) {
         super(title, size, fileConfig);
@@ -121,8 +121,7 @@ public class SettingsMenu extends Menu {
 
             if (!generator.isAutoPickupBuyed()) return;
 
-            if (generator.isAutoPickupEnabled()) generator.setAutoPickupEnabled(false);
-            else generator.setAutoPickupEnabled(true);
+            generator.setAutoPickupEnabled(!generator.isAutoPickupEnabled());
 
             openMenu(player, generator);
 
@@ -132,8 +131,7 @@ public class SettingsMenu extends Menu {
 
             if (!generator.isAutoSmeltBuyed()) return;
 
-            if (generator.isAutoSmeltEnabled()) generator.setAutoSmeltEnabled(false);
-            else generator.setAutoSmeltEnabled(true);
+            generator.setAutoSmeltEnabled(!generator.isAutoSmeltEnabled());
 
             openMenu(player, generator);
 
@@ -162,8 +160,7 @@ public class SettingsMenu extends Menu {
             if (generator.isHologramEnabled()) {
                 generator.setHologramEnabled(false);
                 hologramHook.deleteHologram(generator);
-            }
-            else {
+            } else {
                 generator.setHologramEnabled(true);
                 hologramHook.loadHologram(generator);
             }

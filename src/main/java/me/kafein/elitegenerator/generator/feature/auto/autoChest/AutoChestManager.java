@@ -15,7 +15,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.annotation.Nullable;
-import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -25,10 +24,8 @@ public class AutoChestManager {
     final private Map<UUID, UUID> autoChestPlayers = new HashMap<>();
 
     final private String message = EliteGenerator.getInstance().getFileManager().getFile(FileManager.ConfigFile.settings).getString("settings.generator.autoChestTimeLeftMessage");
-
-    private GeneratorManager generatorManager = null;
-
     final private Plugin plugin;
+    private GeneratorManager generatorManager = null;
 
     public AutoChestManager(final Plugin plugin) {
         this.plugin = plugin;
@@ -45,7 +42,7 @@ public class AutoChestManager {
 
         new BukkitRunnable() {
 
-            private Generator generator = getGeneratorManager().getGenerator(generatorUUID);
+            private final Generator generator = getGeneratorManager().getGenerator(generatorUUID);
             private int time = 30;
 
             @Override
@@ -64,7 +61,7 @@ public class AutoChestManager {
                 final String text = ChatColor.translateAlternateColorCodes('&', message.replace("%time%", Integer.toString(time)));
                 try {
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(text));
-                }catch (NoSuchMethodError e) {
+                } catch (NoSuchMethodError e) {
                     send1_8(player, text);
                 }
 
@@ -110,7 +107,7 @@ public class AutoChestManager {
             packet = packageType.getClass("PacketPlayOutChat").getConstructor(new Class<?>[]{packageType.getClass("IChatBaseComponent"), byte.class}).newInstance(chatComponentText, (byte) 2);
         }
 
-        final Object entityPlayer = player.getClass().getMethod("getHandle", new Class[0]).invoke(player, new Object[0]);
+        final Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
         final Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
         playerConnection.getClass().getMethod("sendPacket", packageType.getClass("Packet")).invoke(playerConnection, packet);
 

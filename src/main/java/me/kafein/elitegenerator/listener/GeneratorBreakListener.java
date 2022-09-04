@@ -9,7 +9,6 @@ import me.kafein.elitegenerator.generator.feature.auto.autoPickup.AutoPickup;
 import me.kafein.elitegenerator.generator.feature.auto.autoPickup.AutoPickupManager;
 import me.kafein.elitegenerator.generator.feature.oreGen.OreGenManager;
 import me.kafein.elitegenerator.generator.feature.regen.RegenManager;
-import me.kafein.elitegenerator.generator.feature.regen.RegenRunnable;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;

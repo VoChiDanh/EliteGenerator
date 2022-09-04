@@ -40,7 +40,7 @@ public class HolographicDisplaysHook implements HologramHook {
             location.add(0.5, fileConfig.getDouble("settings.generator.hologram.boosted-hologram-height"), 0.5);
             hologram = HologramsAPI.createHologram(plugin, location);
             boostedHologramTexts.forEach(e -> hologram.appendTextLine(PlaceHolder.replace(e, generator)));
-        }else {
+        } else {
             location.add(0.5, fileConfig.getDouble("settings.generator.hologram.classic-hologram-height"), 0.5);
             hologram = HologramsAPI.createHologram(plugin, location);
             classicHologramTexts.forEach(e -> hologram.appendTextLine(PlaceHolder.replace(e, generator)));

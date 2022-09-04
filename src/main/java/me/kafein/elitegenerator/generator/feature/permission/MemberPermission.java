@@ -6,7 +6,8 @@ public enum MemberPermission {
 
     BREAK_GENERATOR(true), OPEN_SETTINGS(false), CHANGE_SETTINGS(false);
 
-    @Setter private boolean value;
+    @Setter
+    private boolean value;
 
     MemberPermission(boolean defaultValue) {
         this.value = defaultValue;

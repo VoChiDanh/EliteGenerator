@@ -5,7 +5,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Type;
 
 public class JsonObject {
@@ -91,7 +94,7 @@ public class JsonObject {
     }
 
     public <T> T getObject(final String property, final Type type) {
-        return (T) gson.fromJson(jsonObject.get(property), type);
+        return gson.fromJson(jsonObject.get(property), type);
     }
 
     public JsonObject getIJsonObject(final String property) {
@@ -120,7 +123,7 @@ public class JsonObject {
             gson.toJson(parse(), fileWriter);
             fileWriter.flush();
             fileWriter.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

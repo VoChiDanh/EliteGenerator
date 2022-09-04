@@ -14,8 +14,7 @@ public class VaultHook {
     public static boolean setup(Plugin plugin, PluginManager pluginManager) {
         if (pluginManager.getPlugin("Vault") == null) return false;
         if (!setupEconomy(plugin)) return false;
-        if (!setupPermissions(plugin)) return false;
-        return true;
+        return setupPermissions(plugin);
     }
 
     private static boolean setupEconomy(final Plugin plugin) {

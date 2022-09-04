@@ -4,8 +4,8 @@ main: me.kafein.elitegenerator.EliteGenerator
 api-version: 1.13
 authors: [ Kafein ]
 description: Elite Generator Plugin.
-depend: [Vault]
-softdepend: [HolographicDisplays, DecentHolograms, ASkyBlock, BentoBox, SuperiorSkyblock2, IridiumSkyblock, FabledSkyBlock]
+depend: [ Vault ]
+softdepend: [ HolographicDisplays, DecentHolograms, ASkyBlock, BentoBox, SuperiorSkyblock2, IridiumSkyblock, FabledSkyBlock ]
 commands:
   elitegenerator:
-    aliases: [generator]
+    aliases: [ generator ]

@@ -6,7 +6,6 @@ import me.kafein.elitegenerator.config.FileManager;
 import me.kafein.elitegenerator.generator.feature.requirement.Requirement;
 import me.kafein.elitegenerator.generator.feature.requirement.impl.*;
 import me.kafein.elitegenerator.generator.feature.upgrade.impl.*;
-import org.bukkit.Bukkit;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;

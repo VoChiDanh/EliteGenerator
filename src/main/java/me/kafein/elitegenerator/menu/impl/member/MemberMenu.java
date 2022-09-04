@@ -15,7 +15,6 @@ import me.kafein.elitegenerator.menu.event.MenuOpenEvent;
 import me.kafein.elitegenerator.util.item.ItemBuilder;
 import me.kafein.elitegenerator.util.placeholder.PlaceHolder;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.Inventory;
@@ -100,14 +99,15 @@ public class MemberMenu extends Menu {
 
             if (memberUUID == generator.getOwnerUUID()) return;
 
-            if (!generator.containsGeneratorMember(memberUUID)){
+            if (!generator.containsGeneratorMember(memberUUID)) {
                 player.closeInventory();
                 return;
             }
 
             final GeneratorMember generatorMember = generator.getGeneratorMember(memberUUID);
 
-            if (generatorMember.containsPermission(MemberPermission.OPEN_SETTINGS)) generatorMember.removePermission(MemberPermission.OPEN_SETTINGS);
+            if (generatorMember.containsPermission(MemberPermission.OPEN_SETTINGS))
+                generatorMember.removePermission(MemberPermission.OPEN_SETTINGS);
             else generatorMember.addPermission(MemberPermission.OPEN_SETTINGS);
 
             openMenu(player, generator, memberUUID, memberName);
@@ -119,14 +119,15 @@ public class MemberMenu extends Menu {
 
             if (memberUUID == generator.getOwnerUUID()) return;
 
-            if (!generator.containsGeneratorMember(memberUUID)){
+            if (!generator.containsGeneratorMember(memberUUID)) {
                 player.closeInventory();
                 return;
             }
 
             final GeneratorMember generatorMember = generator.getGeneratorMember(memberUUID);
 
-            if (generatorMember.containsPermission(MemberPermission.BREAK_GENERATOR)) generatorMember.removePermission(MemberPermission.BREAK_GENERATOR);
+            if (generatorMember.containsPermission(MemberPermission.BREAK_GENERATOR))
+                generatorMember.removePermission(MemberPermission.BREAK_GENERATOR);
             else generatorMember.addPermission(MemberPermission.BREAK_GENERATOR);
 
             openMenu(player, generator, memberUUID, memberName);
@@ -138,14 +139,15 @@ public class MemberMenu extends Menu {
 
             if (memberUUID == generator.getOwnerUUID()) return;
 
-            if (!generator.containsGeneratorMember(memberUUID)){
+            if (!generator.containsGeneratorMember(memberUUID)) {
                 player.closeInventory();
                 return;
             }
 
             final GeneratorMember generatorMember = generator.getGeneratorMember(memberUUID);
 
-            if (generatorMember.containsPermission(MemberPermission.CHANGE_SETTINGS)) generatorMember.removePermission(MemberPermission.CHANGE_SETTINGS);
+            if (generatorMember.containsPermission(MemberPermission.CHANGE_SETTINGS))
+                generatorMember.removePermission(MemberPermission.CHANGE_SETTINGS);
             else generatorMember.addPermission(MemberPermission.CHANGE_SETTINGS);
 
             openMenu(player, generator, memberUUID, memberName);

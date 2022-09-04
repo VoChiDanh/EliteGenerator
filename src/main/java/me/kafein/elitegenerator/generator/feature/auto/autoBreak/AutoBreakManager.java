@@ -1,6 +1,5 @@
 package me.kafein.elitegenerator.generator.feature.auto.autoBreak;
 
-import lombok.Getter;
 import me.kafein.elitegenerator.EliteGenerator;
 import me.kafein.elitegenerator.event.GeneratorBreakEvent;
 import me.kafein.elitegenerator.generator.Generator;
@@ -11,20 +10,16 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
 public class AutoBreakManager {
 
-    private GeneratorManager generatorManager = null;
     final private PluginManager pluginManager = Bukkit.getPluginManager();
-
     final private List<UUID> generatorList = new ArrayList<>();
-
-    private boolean isRunnableStarted;
-
     final private Plugin plugin;
+    private GeneratorManager generatorManager = null;
+    private boolean isRunnableStarted;
 
     public AutoBreakManager(final Plugin plugin) {
         this.plugin = plugin;

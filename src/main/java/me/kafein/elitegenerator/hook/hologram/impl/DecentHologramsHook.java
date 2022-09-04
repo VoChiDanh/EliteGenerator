@@ -37,15 +37,17 @@ public class DecentHologramsHook implements HologramHook {
         if (generator.hasBoost()) {
             location.add(0.5, fileConfig.getDouble("settings.generator.hologram.boosted-hologram-height"), 0.5);
             hologram = DHAPI.getHologram(generator.getGeneratorUUID().toString());
-            if (hologram == null) hologram = DHAPI.createHologram(generator.getGeneratorUUID().toString(), location, false);
+            if (hologram == null)
+                hologram = DHAPI.createHologram(generator.getGeneratorUUID().toString(), location, false);
             hologramPage = hologram.getPage(0);
             boostedHologramTexts.forEach(e -> {
                 hologramPage.addLine(new HologramLine(hologramPage, location, PlaceHolder.replace(e, generator)));
             });
-        }else {
+        } else {
             location.add(0.5, fileConfig.getDouble("settings.generator.hologram.classic-hologram-height"), 0.5);
             hologram = DHAPI.getHologram(generator.getGeneratorUUID().toString());
-            if (hologram == null) hologram = DHAPI.createHologram(generator.getGeneratorUUID().toString(), location, false);
+            if (hologram == null)
+                hologram = DHAPI.createHologram(generator.getGeneratorUUID().toString(), location, false);
             hologramPage = hologram.getPage(0);
             classicHologramTexts.forEach(e -> {
                 hologramPage.addLine(new HologramLine(hologramPage, location, PlaceHolder.replace(e, generator)));

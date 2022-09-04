@@ -3,8 +3,6 @@ package me.kafein.elitegenerator.util.item;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import me.kafein.elitegenerator.util.ColorSerializer;
 import me.kafein.elitegenerator.util.material.XMaterial;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -18,9 +16,9 @@ import java.util.Optional;
 
 public class ItemBuilder extends ItemStack {
 
-    private ItemStack itemStack;
-    private ItemMeta itemMeta;
-    private NBTItem nbtItem;
+    private final ItemStack itemStack;
+    private final ItemMeta itemMeta;
+    private final NBTItem nbtItem;
 
     public ItemBuilder(final ItemStack itemStack) {
         this.itemStack = itemStack;
@@ -50,15 +48,15 @@ public class ItemBuilder extends ItemStack {
         return itemMeta.getLore();
     }
 
-    public ItemBuilder clearLore() {
-        itemMeta.setLore(new ArrayList<>());
-        return this;
-    }
-
     public ItemBuilder setLore(final List<String> list) {
         if (list == null || list.isEmpty()) return this;
         list.replaceAll(e -> ColorSerializer.serialize(e));
         itemMeta.setLore(list);
+        return this;
+    }
+
+    public ItemBuilder clearLore() {
+        itemMeta.setLore(new ArrayList<>());
         return this;
     }
 
@@ -73,7 +71,7 @@ public class ItemBuilder extends ItemStack {
         if (itemMeta.getLore() == null) {
             Arrays.stream(var).forEach(e -> ColorSerializer.serialize(e));
             itemMeta.setLore(Arrays.asList(var));
-        }else Arrays.stream(var).forEach(e -> itemMeta.getLore().add(ColorSerializer.serialize(e)));
+        } else Arrays.stream(var).forEach(e -> itemMeta.getLore().add(ColorSerializer.serialize(e)));
 
         return this;
     }
@@ -99,16 +97,17 @@ public class ItemBuilder extends ItemStack {
         if (var) {
             itemMeta.addEnchant(Enchantment.DURABILITY, 1, false);
             itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        }else itemMeta.removeItemFlags(ItemFlag.HIDE_ENCHANTS);
+        } else itemMeta.removeItemFlags(ItemFlag.HIDE_ENCHANTS);
         return this;
     }
 
     public ItemBuilder setSkullOwner(final String player) {
 
-        try{
+        try {
             SkullMeta im = (SkullMeta) itemMeta;
             im.setOwner(player);
-        }catch(ClassCastException expected){}
+        } catch (ClassCastException expected) {
+        }
 
         return this;
 

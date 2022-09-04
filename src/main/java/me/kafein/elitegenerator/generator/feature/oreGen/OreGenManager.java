@@ -4,8 +4,6 @@ import me.kafein.elitegenerator.EliteGenerator;
 import me.kafein.elitegenerator.config.FileConfig;
 import me.kafein.elitegenerator.config.FileManager;
 import me.kafein.elitegenerator.generator.Generator;
-import me.kafein.elitegenerator.generator.feature.requirement.impl.MoneyRequirement;
-import me.kafein.elitegenerator.generator.feature.requirement.impl.PermissionRequirement;
 import org.bukkit.Material;
 
 import javax.annotation.Nullable;

@@ -56,7 +56,7 @@ public class GeneratorCMD implements TabExecutor {
 
             return true;
 
-        }else if (args[0].equalsIgnoreCase("reload")) {
+        } else if (args[0].equalsIgnoreCase("reload")) {
 
             fileManager.loadFiles();
             PlaceHolder.reload();

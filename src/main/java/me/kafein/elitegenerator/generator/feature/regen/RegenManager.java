@@ -5,16 +5,15 @@ import org.bukkit.Material;
 import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class RegenManager {
 
     final private Map<Location, Regen> regenGenerators = new ConcurrentHashMap<>();
-
-    private boolean isRunnableStarted;
-
     final private Plugin plugin;
+    private boolean isRunnableStarted;
 
     public RegenManager(final Plugin plugin) {
         this.plugin = plugin;

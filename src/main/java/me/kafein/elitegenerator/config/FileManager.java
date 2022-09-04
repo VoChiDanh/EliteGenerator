@@ -1,14 +1,10 @@
 package me.kafein.elitegenerator.config;
 
 import me.kafein.elitegenerator.util.ColorSerializer;
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.io.*;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.List;
 
 public class FileManager {

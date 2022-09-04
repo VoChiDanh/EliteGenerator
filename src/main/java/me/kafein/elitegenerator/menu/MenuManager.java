@@ -9,7 +9,6 @@ import me.kafein.elitegenerator.menu.impl.member.MemberMenu;
 import me.kafein.elitegenerator.menu.impl.member.MembersMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nullable;
@@ -66,7 +65,7 @@ public class MenuManager {
                     break;
             }
 
-            boolean enabled = fileConfig.containsKey("menu.enabled") ? fileConfig.getBoolean("menu.enabled") : true;
+            boolean enabled = !fileConfig.containsKey("menu.enabled") || fileConfig.getBoolean("menu.enabled");
             menu.setEnabled(enabled);
             menu.register(plugin);
 

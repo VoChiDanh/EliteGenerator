@@ -15,8 +15,8 @@ import java.util.Set;
 
 public class GeneratorDeleteCondition {
 
-    private static boolean enabled = false;
     private final static Set<Requirement> requirements = new HashSet<>();
+    private static boolean enabled = false;
 
     static {
         FileConfig config = EliteGenerator.getInstance().getFileManager().getFile(FileManager.ConfigFile.settings);
@@ -67,7 +67,8 @@ public class GeneratorDeleteCondition {
     public static boolean check(Player player, Generator generator) {
         if (!enabled) return true;
         for (Requirement requirement : requirements) {
-            if (requirement.getRequirementType() == RequirementType.GENERATOR ? requirement.has(generator) : requirement.has(player)) continue;
+            if (requirement.getRequirementType() == RequirementType.GENERATOR ? requirement.has(generator) : requirement.has(player))
+                continue;
             return false;
         }
         return true;

@@ -32,12 +32,12 @@ public class AutoPickup {
         return dropItem;
     }
 
-    public boolean isAutoSmeltEnabled() {
-        return autoSmeltEnabled;
-    }
-
     public void setDropItem(ItemStack dropItem) {
         this.dropItem = dropItem;
+    }
+
+    public boolean isAutoSmeltEnabled() {
+        return autoSmeltEnabled;
     }
 
     public void setAutoSmeltEnabled(boolean autoSmeltEnabled) {

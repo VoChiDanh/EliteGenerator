@@ -31,8 +31,8 @@ public class UpgradeMenu extends Menu {
     final private FileManager fileManager = EliteGenerator.getInstance().getFileManager();
     final private GeneratorManager generatorManager = EliteGenerator.getInstance().getGeneratorManager();
     final private FeatureManager featureManager = generatorManager.getFeatureManager();
-    final private HologramHook hologramHook = EliteGenerator.getInstance().getHookManager().getHologramHook();
     final private UpgradeManager upgradeManager = featureManager.getUpgradeManager();
+    final private HologramHook hologramHook = EliteGenerator.getInstance().getHookManager().getHologramHook();
 
     public UpgradeMenu(String title, int slot, FileConfig fileConfig) {
         super(title, slot, fileConfig);

@@ -25,25 +25,25 @@ public class PlayerListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler (priority = EventPriority.LOW)
+    @EventHandler(priority = EventPriority.LOW)
     public void onAsyncPreLogin(final AsyncPlayerPreLoginEvent e) {
         userManager.loadUser(e.getUniqueId());
     }
 
-    @EventHandler (priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onAsyncPreLoginMonitor(final AsyncPlayerPreLoginEvent e) {
         if (userManager.containsUser(e.getUniqueId())) return;
         userManager.loadUser(e.getUniqueId());
     }
 
-    @EventHandler (priority = EventPriority.LOW)
+    @EventHandler(priority = EventPriority.LOW)
     public void onLogin(final PlayerLoginEvent e) {
         final UUID uuid = e.getPlayer().getUniqueId();
         if (userManager.containsUser(uuid)) return;
         userManager.loadUser(uuid);
     }
 
-    @EventHandler (priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onLoginMonitor(final PlayerLoginEvent e) {
         final UUID uuid = e.getPlayer().getUniqueId();
         if (userManager.containsUser(uuid)) return;

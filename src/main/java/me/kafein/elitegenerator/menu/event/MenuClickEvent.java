@@ -28,6 +28,10 @@ public class MenuClickEvent extends Event {
         this.clickType = clickType;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
+
     public InventoryClickEvent getClickEvent() {
         return clickEvent;
     }
@@ -54,10 +58,6 @@ public class MenuClickEvent extends Event {
 
     @Override
     public HandlerList getHandlers() {
-        return handlerList;
-    }
-
-    public static HandlerList getHandlerList() {
         return handlerList;
     }
 

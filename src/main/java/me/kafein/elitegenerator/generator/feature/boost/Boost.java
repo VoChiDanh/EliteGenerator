@@ -18,9 +18,13 @@ public class Boost {
         return time;
     }
 
+    public void setTime(long time) {
+        this.time = time;
+    }
+
     public String getTimeParsed() {
         final long time = Long.valueOf(this.time);
-        final int days = (int) (time / 86400) ;
+        final int days = (int) (time / 86400);
         final int hours = (int) (time / 3600) % 24;
         final int minutes = (int) (time / 60) % 60;
         final int seconds = (int) (time % 60);
@@ -28,10 +32,6 @@ public class Boost {
                 + (hours > 0 ? (hours > 9 ? hours : "0" + hours) : "00") + "."
                 + (minutes > 0 ? (minutes > 9 ? minutes : "0" + minutes) : "00") + "."
                 + (seconds > 0 ? (seconds > 9 ? seconds : "0" + seconds) : "00");
-    }
-
-    public void setTime(long time) {
-        this.time = time;
     }
 
     public void addTime(long var) {

@@ -3,7 +3,9 @@ package me.kafein.elitegenerator.generator.feature.oreGen;
 import org.bukkit.Material;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class OreGen {
 

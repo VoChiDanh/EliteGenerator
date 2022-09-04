@@ -5,8 +5,6 @@ import me.kafein.elitegenerator.generator.feature.requirement.Requirement;
 import me.kafein.elitegenerator.generator.feature.requirement.RequirementType;
 import org.bukkit.entity.Player;
 
-import java.util.UUID;
-
 public class IslandLevelRequirement extends Requirement {
 
     public IslandLevelRequirement(final Number requirement) {

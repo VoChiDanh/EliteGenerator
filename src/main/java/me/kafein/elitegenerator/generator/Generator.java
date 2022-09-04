@@ -12,29 +12,25 @@ import org.bukkit.entity.Player;
 import javax.annotation.Nullable;
 import java.util.*;
 
-@Getter @Setter
+@Getter
+@Setter
 public class Generator {
-
-    private Map<UUID, GeneratorMember> generatorMembers = new HashMap<>();
-    private UUID ownerUUID;
-
-    private Object hologram;
-    private boolean hologramEnabled;
-
-    private Boost boost;
-
-    private boolean autoBreakBuyed, autoBreakEnabled;
-    private boolean autoPickupBuyed, autoPickupEnabled;
-    private boolean autoSmeltBuyed, autoSmeltEnabled;
-    private boolean autoChestBuyed;
-    private AutoChest autoChest;
-
-    private String createDate;
 
     final private Location islandLocation;
     final private UUID generatorUUID;
     final private String generatorName;
     final private Location generatorLocation;
+    private Map<UUID, GeneratorMember> generatorMembers = new HashMap<>();
+    private UUID ownerUUID;
+    private Object hologram;
+    private boolean hologramEnabled;
+    private Boost boost;
+    private boolean autoBreakBuyed, autoBreakEnabled;
+    private boolean autoPickupBuyed, autoPickupEnabled;
+    private boolean autoSmeltBuyed, autoSmeltEnabled;
+    private boolean autoChestBuyed;
+    private AutoChest autoChest;
+    private String createDate;
     private int level;
 
     public Generator(final Location islandLocation, final UUID generatorUUID, final String generatorName, final Location generatorLocation, final int level) {
@@ -93,12 +89,12 @@ public class Generator {
         return new ArrayList<>(generatorMembers.keySet());
     }
 
-    public Map<UUID, GeneratorMember> getGeneratorMembersMap() {
-        return generatorMembers;
-    }
-
     public void setGeneratorMembers(Map<UUID, GeneratorMember> generatorMembers) {
         this.generatorMembers = generatorMembers;
+    }
+
+    public Map<UUID, GeneratorMember> getGeneratorMembersMap() {
+        return generatorMembers;
     }
 
     public int getGeneratorMemberSize() {
@@ -129,10 +125,6 @@ public class Generator {
         return autoChest != null;
     }
 
-    public void setAutoChest(AutoChest autoChest) {
-        this.autoChest = autoChest;
-    }
-
     public void clearAutoChest() {
         this.autoChest = null;
     }
@@ -140,6 +132,10 @@ public class Generator {
     @Nullable
     public AutoChest getAutoChest() {
         return autoChest;
+    }
+
+    public void setAutoChest(AutoChest autoChest) {
+        this.autoChest = autoChest;
     }
 
     public void addLevel(int var) {

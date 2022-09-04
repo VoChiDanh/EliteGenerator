@@ -41,6 +41,10 @@ public class GeneratorBreakEvent extends Event {
         this.cancelled = cancelled;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
+
     @Nullable
     public Player getPlayer() {
         return player;
@@ -80,10 +84,6 @@ public class GeneratorBreakEvent extends Event {
 
     @Override
     public HandlerList getHandlers() {
-        return handlerList;
-    }
-
-    public static HandlerList getHandlerList() {
         return handlerList;
     }
 

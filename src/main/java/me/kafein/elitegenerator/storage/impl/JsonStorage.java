@@ -17,7 +17,6 @@ import org.bukkit.plugin.Plugin;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -61,8 +60,9 @@ public class JsonStorage implements Storage {
         User user = new User(userUUID);
 
         final JsonObject jsonObject = new JsonObject(gson, file).getIJsonObject("user");
-        List<String> list = jsonObject.getObject("generators", new TypeToken<List<String>>(){}.getType());
-        list.forEach(uuidString ->{
+        List<String> list = jsonObject.getObject("generators", new TypeToken<List<String>>() {
+        }.getType());
+        list.forEach(uuidString -> {
             UUID uuid = UUID.fromString(uuidString);
             user.addGenerator(uuid);
         });
@@ -79,7 +79,7 @@ public class JsonStorage implements Storage {
         final File file = new File(plugin.getDataFolder(), "storage/user/" + userUUID.toString() + ".json");
         if (!file.exists()) {
 
-            plugin.getLogger().warning("Player file is not found! '" + userUUID.toString() + "'");
+            plugin.getLogger().warning("Player file is not found! '" + userUUID + "'");
             return;
 
         }
@@ -129,7 +129,8 @@ public class JsonStorage implements Storage {
         generator.setAutoSmeltEnabled(jsonObject.getBoolean("autoSmeltEnabled"));
         generator.setAutoChestBuyed(jsonObject.getBoolean("autoChestBuyed"));
         final String autoChestLocation = jsonObject.getString("autoChestLocation");
-        if (!autoChestLocation.equals("none")) generator.setAutoChest(new AutoChest(LocationSerializer.deserialize(autoChestLocation)));
+        if (!autoChestLocation.equals("none"))
+            generator.setAutoChest(new AutoChest(LocationSerializer.deserialize(autoChestLocation)));
 
         final String boost = jsonObject.getString("boost");
         if (!boost.equals("none")) {
@@ -139,7 +140,8 @@ public class JsonStorage implements Storage {
             if (time > 0) generator.setBoost(new Boost(level, time));
         }
 
-        generator.setGeneratorMembers(jsonObject.getObject("members", new TypeToken<Map<UUID, GeneratorMember>>(){}.getType()));
+        generator.setGeneratorMembers(jsonObject.getObject("members", new TypeToken<Map<UUID, GeneratorMember>>() {
+        }.getType()));
 
         return generator;
 

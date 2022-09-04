@@ -11,7 +11,8 @@ public class LevelRequirement extends Requirement {
     }
 
     @Override
-    public void apply(Object target) {}
+    public void apply(Object target) {
+    }
 
     @Override
     public boolean has(Object target) {
